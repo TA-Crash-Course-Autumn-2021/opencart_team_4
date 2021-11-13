@@ -1,17 +1,25 @@
 package com.opencart.steps;
 
+import com.opencart.driver.DriverRepository;
+import com.opencart.pages.HomePage;
+import com.opencart.pages.ProductPage;
 import com.opencart.pages.SearchPage;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class SearchPageBL {
 
-    SearchPage searchPage;
+   private SearchPage searchPage;
 
     public SearchPageBL() {
-        searchPage = new SearchPage();
+         searchPage = new SearchPage();
     }
 
-    public void setSearchCategory(String category) {
+    public SearchPageBL setSearchCategory(String category) {
         searchPage.getSearchFormButton().click();
         for (WebElement target : searchPage.getSearchInCategories()) {
             if(target != null & target.getText().equalsIgnoreCase(category)){
@@ -19,5 +27,27 @@ public class SearchPageBL {
                 break;
             }
             }
+        return this;
         }
+
+    public SearchPageBL searchInDescription(){
+        searchPage.getSearchInDescription().click();
+    return this;
+    }
+
+    public SearchPageBL searchInSubcategories(){
+        searchPage.getSearchInSubCategories().click();
+    return this;
+    }
+
+    public ProductPageBL searchPageProductClick(String product) throws Exception {
+        DriverRepository.DRIVERS.get().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        for(WebElement current : searchPage.getSearchedProducts()){
+            if(current != null & current.getText().equalsIgnoreCase(product)){
+                current.click();
+                break;
+            }
+        }
+    return new ProductPageBL();
+    }
 }
