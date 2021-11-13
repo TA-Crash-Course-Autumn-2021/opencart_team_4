@@ -6,4 +6,4 @@ import org.testng.annotations.Test;
 import static com.opencart.enums.URLs.BASE_URL;
 
 public class UserRegisterTest extends BaseTest {
-}
+    }

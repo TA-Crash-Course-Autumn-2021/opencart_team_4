@@ -1,7 +1,9 @@
+import com.opencart.driver.DriverRepository;
+import com.opencart.enums.Currencies;
 import com.opencart.navigation.Navigation;
-import com.opencart.steps.HomePageBL;
 import com.opencart.steps.MainPageBL;
 import org.testng.annotations.Test;
+
 import static com.opencart.enums.URLs.BASE_URL;
 
 public class SearchPageTest extends BaseTest {
