@@ -2,7 +2,6 @@ package com.opencart.pages;
 
 
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 
@@ -31,11 +30,20 @@ public class SearchPage extends BasePage {
     @FindBy(xpath = "//select[@class = 'form-control']")
     WebElement searchFormButton;
 
+    @FindBy(xpath = "//div[@class = 'product-thumb']//h4/a")
+    List<WebElement> searchedProductClick;
+
     public List<WebElement> getSearchInCategories() {
         return searchInCategories;
     }
 
+    public WebElement getSearchInSubCategories() { return searchInSubCategories; }
+
+    public WebElement getSearchInDescription() { return searchInDescription; }
+
     public WebElement getSearchFormButton() {
         return searchFormButton;
     }
+
+    public List<WebElement> getSearchedProducts() { return searchedProductClick; }
 }
