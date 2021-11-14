@@ -1,12 +1,10 @@
 package com.opencart.pages;
 
-import com.opencart.driver.DriverRepository;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
 
 public class HeaderPage extends BasePage {
 
