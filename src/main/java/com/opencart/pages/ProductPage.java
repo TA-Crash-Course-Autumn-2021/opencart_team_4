@@ -1,7 +1,9 @@
 package com.opencart.pages;
 
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductPage extends BasePage{
 
@@ -23,14 +25,24 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//div[@id = 'product-product']//ul[@class = 'list-unstyled']//li[4]")
     private WebElement availability;
 
-    @FindBy(xpath = "//div[@id = 'product']//input[@type = 'text']")
+    @FindBy(xpath = "//input[@name = 'quantity']")
     private WebElement quantity;
 
     public WebElement getProductName() { return productName;}
-    public WebElement getAddToCart() { return addToCart; }
+
+    public WebElement getAddToCart() {
+        wait.until(ExpectedConditions.visibilityOf(addToCart));
+        return addToCart; }
+
     public WebElement getAddToWishList() { return addToWishList; }
+
     public WebElement getCompareThisProduct() { return compareThisProduct; }
+
     public WebElement getProductPrice() { return productPrice; }
+
     public WebElement getAvailability() { return availability; }
-    public WebElement getQuantity() { return quantity; }
+
+    public WebElement getQuantity() {
+        wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(quantity));
+        return quantity; }
 }
