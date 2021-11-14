@@ -1,12 +1,8 @@
 package com.opencart.steps;
 
-import com.opencart.driver.DriverRepository;
-import com.opencart.enums.Currencies;
-import com.opencart.pages.CartPage;
+
 import com.opencart.pages.HeaderPage;
-import com.opencart.pages.SearchPage;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HeaderPageBL {
 

@@ -1,8 +1,6 @@
 package com.opencart.steps;
 
-import com.opencart.driver.DriverRepository;
 import com.opencart.pages.ProductPage;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductPageBL {
 
@@ -14,25 +12,20 @@ public class ProductPageBL {
         productPage.getQuantity().sendKeys(Integer.toString(quantity));
         return this;
     }
-    public String getAvailabilityStatus(){
-        return productPage.getAvailability().getText();
-    }
-
-    public int getProductPrice(){
-        return Integer.getInteger(productPage.getProductPrice().getText());
-    }
 
     public ProductPageBL addToCart(){
         productPage.getAddToCart().click();
         return this;
     }
 
-    public String getProductName(){
-        return productPage.getProductName().getText();
+    public ProductPageBL getProductName(){
+        productPage.getProductName().getText();
+        return this;
     }
 
-    public void addProductToCompare(){
+    public ProductPageBL addProductToCompare(){
         productPage.getCompareThisProduct().click();
+        return this;
     }
 
     public void addProductToWishList(){
