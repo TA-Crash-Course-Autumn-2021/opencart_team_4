@@ -2,6 +2,7 @@ package com.opencart.steps;
 
 import com.opencart.driver.DriverRepository;
 import com.opencart.pages.SearchPage;
+import com.opencart.pages.containers.ProductContainer;
 import org.openqa.selenium.WebElement;
 import java.util.concurrent.TimeUnit;
 
@@ -34,14 +35,28 @@ public class SearchPageBL {
     return this;
     }
 
-    public ProductPageBL searchPageProductClick(String product) throws Exception {
-        DriverRepository.DRIVERS.get().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        for(WebElement current : searchPage.getSearchedProducts()){
-            if(current != null & current.getText().equalsIgnoreCase(product)){
-                current.click();
-                break;
-            }
-        }
-    return new ProductPageBL();
+    public SearchPageBL searchAddToCompare(String productName){
+        ProductContainer product = searchPage.getProducts().stream().filter(e -> e.productGetName().equalsIgnoreCase(productName)).findFirst().orElseThrow(NullPointerException::new);
+        product.productAddToCompare().click();
+        return this;
     }
+
+    public SearchPageBL searchAddToCart(String productName){
+        ProductContainer product = searchPage.getProducts().stream().filter(e -> e.productGetName().equalsIgnoreCase(productName)).findFirst().orElseThrow(NullPointerException::new);
+        product.productAddToCart().click();
+        return this;
+    }
+
+    public SearchPageBL searchAddToWishList(String productName){
+        ProductContainer product = searchPage.getProducts().stream().filter(e -> e.productGetName().equalsIgnoreCase(productName)).findFirst().orElseThrow(NullPointerException::new);
+        product.productAddToWishList().click();
+        return this;
+    }
+
+    public ProductPageBL searchClickOnProduct(String productName){
+        ProductContainer product = searchPage.getProducts().stream().filter(e -> e.productGetName().equalsIgnoreCase(productName)).findFirst().orElseThrow(NullPointerException::new);
+        product.clickOnProduct().click();
+        return new ProductPageBL();
+    }
+
 }
