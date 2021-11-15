@@ -33,16 +33,19 @@ public class HeaderPage extends BasePage {
     private WebElement headerUpperCart;
 
     @FindBy(xpath = "//ul[@class = 'list-inline']//i[@class = 'fa fa-heart']")
-    WebElement headerWishListButton;
+    private WebElement headerWishListButton;
 
     @FindBy(xpath = "//ul[@class = 'list-inline']//i[@class = 'fa fa-phone']")
-    WebElement headerContactUsButton;
+    private WebElement headerContactUsButton;
 
     @FindBy(xpath = "//button[@class = 'btn btn-link dropdown-toggle']//i[@class = 'fa fa-caret-down']")
-    WebElement headerCurrencyCaretDown;
+    private WebElement headerCurrencyCaretDown;
 
     @FindBy(xpath = "//ul[@class = 'dropdown-menu']//li//button")
-    List<WebElement> headerCurrencyList;
+    private List<WebElement> headerCurrencyList;
+
+    @FindBy(xpath = "//div[@id = 'logo']//h1/a")
+    private WebElement homeButton;
 
     public WebElement getMyAccountButton() {
         wait.until(ExpectedConditions.visibilityOf(myAccountButton));
@@ -78,4 +81,7 @@ public class HeaderPage extends BasePage {
     public List<WebElement> getHeaderCurrencyList() {
         wait.until(ExpectedConditions.visibilityOfAllElements(headerCurrencyList));
         return headerCurrencyList; }
+
+    public WebElement getHomeButton() { return homeButton; }
+
 }

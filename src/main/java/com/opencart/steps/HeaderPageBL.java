@@ -60,4 +60,10 @@ public class HeaderPageBL {
         return new SearchPageBL();
     }
 
+    public HomePageBL headerClickOnHomeButton(){
+        headerPage.getHomeButton().click();
+        return new HomePageBL();
+    }
+
+
 }
