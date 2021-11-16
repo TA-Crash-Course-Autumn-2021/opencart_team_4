@@ -2,8 +2,7 @@ package com.opencart.steps;
 
 import com.opencart.pages.HomePage;
 import com.opencart.pages.containers.ProductContainer;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+
 
 public class HomePageBL {
 
