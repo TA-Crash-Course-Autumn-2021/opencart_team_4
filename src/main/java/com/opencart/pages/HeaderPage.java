@@ -1,9 +1,11 @@
 package com.opencart.pages;
 
+import com.opencart.pages.containers.HeaderPageCartContainer;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class HeaderPage extends BasePage {
@@ -47,6 +49,9 @@ public class HeaderPage extends BasePage {
     @FindBy(xpath = "//div[@id = 'logo']//h1/a")
     private WebElement homeButton;
 
+    @FindBy(xpath = "//ul[@class = 'dropdown-menu pull-right']//table[@class = 'table table-striped']/tbody/tr")
+    private List<WebElement> headerCartProducts;
+
     public WebElement getMyAccountButton() {
         wait.until(ExpectedConditions.visibilityOf(myAccountButton));
         return myAccountButton;
@@ -84,4 +89,9 @@ public class HeaderPage extends BasePage {
 
     public WebElement getHomeButton() { return homeButton; }
 
+    public List<WebElement> getHeaderCartProducts() { return headerCartProducts; }
+
+    public List<HeaderPageCartContainer> getProducts() {
+        return getHeaderCartProducts().stream().map(HeaderPageCartContainer::new).collect(Collectors.toList());
+    }
 }
