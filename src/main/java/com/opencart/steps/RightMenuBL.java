@@ -15,7 +15,10 @@ public class RightMenuBL {
 
     public void downloadsClick(){ rightMenu.getDownloads().click(); }
 
-    public void forgottenPassClick(){ rightMenu.getForgottenPass().click(); }
+    public ForgottenPasswordBL forgottenPassClick(){
+        rightMenu.getForgottenPass().click();
+        return new ForgottenPasswordBL();
+    }
 
     public void myAccountClick(){ rightMenu.getMyAccount().click(); }
 

@@ -12,7 +12,10 @@ public class MyAccountPageBL {
 
     public void myAccountEditClick(){ myAccountPage.getMyAccountEdit().click(); }
 
-    public void myAccountPassChangeClick(){ myAccountPage.getMyAccountPassChange().click(); }
+    public PasswordChangingBL myAccountPassChangeClick(){
+        myAccountPage.getMyAccountPassChange().click();
+        return new PasswordChangingBL();
+    }
 
     public void myAccountAddressBookModifyClick(){ myAccountPage.getMyAccountAddressBook().click(); }
 
