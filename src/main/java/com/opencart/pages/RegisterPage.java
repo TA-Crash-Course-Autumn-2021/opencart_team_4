@@ -30,6 +30,9 @@ public class RegisterPage extends BasePage {
     @FindBy(xpath = ".//*[@type='submit']")
     private WebElement continueButton;
 
+    @FindBy(xpath = "//div[@class = 'text-danger']")
+    private WebElement unsuccessPasswordMatch;
+
     public WebElement getSubscribeRadioButton(int value) {
         return driver.findElement(By.xpath("//*[@type = 'radio' and @value = '" + value + "']"));
     }
@@ -66,4 +69,6 @@ public class RegisterPage extends BasePage {
     public WebElement getTelephoneInput() {
         return telephoneInput;
     }
+
+    public String getUnsuccessPasswordMatch() { return unsuccessPasswordMatch.getText(); }
 }

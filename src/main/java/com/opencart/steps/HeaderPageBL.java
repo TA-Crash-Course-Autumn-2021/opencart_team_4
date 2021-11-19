@@ -1,7 +1,7 @@
 package com.opencart.steps;
 
-
 import com.opencart.pages.HeaderPage;
+import com.opencart.pages.containers.HeaderPageCartContainer;
 import org.openqa.selenium.WebElement;
 
 public class HeaderPageBL {
@@ -65,5 +65,18 @@ public class HeaderPageBL {
         return new HomePageBL();
     }
 
+    public WishListBL headerClickOnWishListButton() {
+        headerPage.getHeaderWishListButton().click();
+        return new WishListBL();
+    }
 
+    public HeaderPageCart getHeaderCart(){
+        headerPage.getHeaderCart().click();
+        return new HeaderPageCart();
+    }
+
+    public LogoutPageBL clickOnLogoutButton() {
+        headerPage.getLogoutButton().click();
+        return new LogoutPageBL();
+    }
 }

@@ -13,6 +13,9 @@ public class HeaderPage extends BasePage {
     @FindBy(xpath = ".//*[@title='My Account']")
     private WebElement myAccountButton;
 
+    @FindBy(xpath = "//li/a[text() = 'Logout']")
+    private WebElement logoutButton;
+
     @FindBy(xpath = ".//*[contains(@href,'register')]")
     private WebElement headerRegisterButton;
 
@@ -90,6 +93,8 @@ public class HeaderPage extends BasePage {
     public WebElement getHomeButton() { return homeButton; }
 
     public List<WebElement> getHeaderCartProducts() { return headerCartProducts; }
+
+    public WebElement getLogoutButton() { return logoutButton; }
 
     public List<HeaderPageCartContainer> getProducts() {
         return getHeaderCartProducts().stream().map(HeaderPageCartContainer::new).collect(Collectors.toList());

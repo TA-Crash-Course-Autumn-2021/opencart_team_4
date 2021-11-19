@@ -21,4 +21,7 @@ public class LoginPage {
 
     @FindBy(xpath = "//input[@type = 'submit']")
     private WebElement loginPageLoginButton;
+
+    @FindBy(xpath = "//div[@class = 'alert alert-danger alert-dismissible']")
+    private WebElement unsuccessfulLoginAlert;
 }
