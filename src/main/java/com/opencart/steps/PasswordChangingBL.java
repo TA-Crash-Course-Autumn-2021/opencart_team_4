@@ -1,6 +1,8 @@
 package com.opencart.steps;
 
+import com.opencart.datamodel.RegisterModel;
 import com.opencart.pages.PasswordChangingPage;
+import com.opencart.repository.RegisterModelRepository;
 import org.testng.Assert;
 
 public class PasswordChangingBL {
@@ -15,6 +17,8 @@ public class PasswordChangingBL {
         passwordChangingPage.getChangePasswordConfirmString().clear();
         passwordChangingPage.getChangePasswordConfirmString().sendKeys(newPassword);
         passwordChangingPage.getChangePasswordContinueButton().click();
+        RegisterModelRepository registerModelRepository = new RegisterModelRepository();
+        registerModelRepository.setValidUserPassword(newPassword);
         return this;
     }
 

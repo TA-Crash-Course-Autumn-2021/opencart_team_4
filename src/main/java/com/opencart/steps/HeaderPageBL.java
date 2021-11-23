@@ -3,6 +3,7 @@ package com.opencart.steps;
 import com.opencart.pages.HeaderPage;
 import com.opencart.pages.containers.HeaderPageCartContainer;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class HeaderPageBL {
 
@@ -14,6 +15,13 @@ public class HeaderPageBL {
 
     public HeaderPageBL clickOnMyAccountButton() {
         headerPage.getMyAccountButton().click();
+        return this;
+    }
+
+    public HeaderPageBL checkCurrencySymbol(String symbol) {
+        String actual = headerPage.getCurrencySymbol().getText();
+        String expected = symbol;
+        Assert.assertEquals(actual, expected, "Currency error");
         return this;
     }
 

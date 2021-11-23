@@ -3,6 +3,7 @@ package com.opencart.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class RegisterPage extends BasePage {
 
@@ -70,5 +71,7 @@ public class RegisterPage extends BasePage {
         return telephoneInput;
     }
 
-    public String getUnsuccessPasswordMatch() { return unsuccessPasswordMatch.getText(); }
+    public String getUnsuccessPasswordMatch() {
+        wait.until(ExpectedConditions.visibilityOf(unsuccessPasswordMatch));
+        return unsuccessPasswordMatch.getText(); }
 }

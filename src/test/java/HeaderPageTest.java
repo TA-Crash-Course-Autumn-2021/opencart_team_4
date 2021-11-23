@@ -30,4 +30,11 @@ public class HeaderPageTest extends BaseTest{
         mainPageBL.getHeaderPageBL()
                 .clickOnHeaderUpperCartButton();
     }
+
+    @Test
+    public void clickOnHeaderUpperCartTester() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
+        mainPageBL.getHeaderPageBL().getHeaderCart();
+    }
 }

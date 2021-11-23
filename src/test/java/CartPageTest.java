@@ -28,9 +28,6 @@ public class CartPageTest extends BaseTest {
         MainPageBL mainPageBL = new MainPageBL();
         CartPageBL cartPageBL = new CartPageBL();
         mainPageBL.getHeaderPageBL()
-                .clickOnHeaderUpperCartButton()
-                .cartSetProductQuantity(cartPageBL.product("Macbook"), 3)
-                .cartRemove(cartPageBL.product("Macbook"));
-        mainPageBL.getHeaderPageBL().headerClickOnHomeButton();
+                .clickOnHeaderUpperCartButton();
     }
 }

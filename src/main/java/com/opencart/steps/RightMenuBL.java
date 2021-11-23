@@ -1,7 +1,9 @@
 package com.opencart.steps;
 
 
+import com.opencart.driver.DriverRepository;
 import com.opencart.pages.RightMenu;
+import org.openqa.selenium.interactions.Actions;
 
 public class RightMenuBL {
 
@@ -38,4 +40,14 @@ public class RightMenuBL {
 
     public void registerClick(){ rightMenu.getRegister().click(); }
 
+    public PasswordChangingBL rightMenuClickOnPasswordChange() {
+    rightMenu.getChangePassword().click();
+    return new PasswordChangingBL();
+    }
+
+    public HomePageBL clickOnLogoutButton() {
+        Actions actions = new Actions(DriverRepository.DRIVERS.get());
+        actions.moveToElement(rightMenu.getLogout()).click().perform();
+        return new HomePageBL();
+    }
 }
