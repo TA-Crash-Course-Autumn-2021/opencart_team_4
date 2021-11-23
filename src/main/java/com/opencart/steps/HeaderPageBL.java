@@ -40,10 +40,10 @@ public class HeaderPageBL {
         return new CartPageBL();
     }
 
-    /*public SharePageBL clickOnHeaderShareButton(){
-        headerPage.getHeaderShareButton().click();
-        return new SharePageBL();
-    }*/
+    public CheckoutPageBL clickOnHeaderCheckoutButton(){
+        headerPage.getHeaderCheckoutButton().click();
+        return new CheckoutPageBL();
+    }
 
     public HeaderPageBL headerCurrencyCaretDownClick(){
         headerPage.getHeaderCurrencyCaretDown().click();

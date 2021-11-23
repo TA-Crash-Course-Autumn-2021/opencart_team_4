@@ -1,7 +1,6 @@
 package com.opencart.steps;
 
-import com.opencart.pages.Forms.CartHardForm;
-import com.opencart.pages.Forms.CartMediumForm;
+
 import com.opencart.pages.ProductPage;
 import org.testng.Assert;
 

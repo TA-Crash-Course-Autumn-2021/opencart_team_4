@@ -5,7 +5,9 @@ import com.opencart.pages.containers.ProductContainer;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.sql.Driver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -70,6 +72,12 @@ public class HomePage extends BasePage{
 
     @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']/a[contains(.,'login')]")
     private WebElement unsuccessfulAddToWishListAlert;
+
+    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']/a[contains(.,'wish')]")
+    private WebElement successfulAddToWishListAlert;
+
+    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']/a[contains(.,'com')]")
+    private WebElement successfulAddToCompareAlert;
 
     public List<WebElement> getProducts() {
         wait.until(ExpectedConditions.visibilityOfAllElements(products));
@@ -153,5 +161,15 @@ public class HomePage extends BasePage{
     public WebElement getUnsuccessfulAddToWishListAlert() {
         wait.until(ExpectedConditions.visibilityOf(unsuccessfulAddToWishListAlert));
         return unsuccessfulAddToWishListAlert;
+    }
+
+    public WebElement getSuccessfulAddToWishListAlert() {
+        new WebDriverWait(DriverRepository.DRIVERS.get(), 10).until(ExpectedConditions.elementToBeClickable(successfulAddToWishListAlert));
+        return successfulAddToWishListAlert;
+    }
+
+    public WebElement getSuccessfulAddToCompareAlert() {
+        wait.until(ExpectedConditions.elementToBeClickable(successfulAddToCompareAlert));
+        return successfulAddToCompareAlert;
     }
 }

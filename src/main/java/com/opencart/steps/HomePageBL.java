@@ -104,13 +104,17 @@ public class HomePageBL {
       return this;
    }
 
-   public HomePageBL productAddAlertAccept() {
-       try {
-           Alert alert = (new WebDriverWait(DriverRepository.DRIVERS.get(), 10).until(ExpectedConditions.alertIsPresent()));
-           DriverRepository.DRIVERS.get().switchTo().alert().accept();
-       } catch (NoAlertPresentException e) {
-           System.out.println("Error: alert is not present");
-       }
+   public HomePageBL successfulAddToWishListAlert() {
+       String expected = "wish list";
+       String actual = homePage.getSuccessfulAddToWishListAlert().getText();
+       Assert.assertTrue(actual.contains(expected), "Error: logged user can't add product to \"Wish List\"");
        return this;
    }
+
+    public HomePageBL successfulAddToCompareAlert() {
+        String expected = "product comparison";
+        String actual = homePage.getSuccessfulAddToCompareAlert().getText();
+        Assert.assertTrue(actual.contains(expected));
+        return this;
+    }
 }

@@ -26,12 +26,14 @@ public class MyAccountPage extends BasePage{
     public WebElement getMyAccountAddressBook() {return myAccountAddressBook;}
 
     public WebElement getMyAccountEdit() {
-        DriverRepository.DRIVERS.get().manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+        wait.until(ExpectedConditions.elementToBeClickable(myAccountEdit));
         return myAccountEdit;}
 
     public WebElement getMyAccountPassChange() {
-        DriverRepository.DRIVERS.get().manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+        wait.until(ExpectedConditions.elementToBeClickable(myAccountPassChange));
         return myAccountPassChange;}
 
-    public WebElement getMyAccountWishList() {return myAccountWishList;}
+    public WebElement getMyAccountWishList() {
+        wait.until(ExpectedConditions.elementToBeClickable(myAccountWishList));
+        return myAccountWishList;}
 }

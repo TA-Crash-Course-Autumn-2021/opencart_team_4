@@ -34,7 +34,7 @@ public class HeaderPage extends BasePage {
     private WebElement headerCart;
 
     @FindBy(xpath = "//nav[@id = 'top']//i[@class = 'fa fa-share']")
-    private WebElement headerShareButton;
+    private WebElement headerCheckoutButton;
 
     @FindBy(xpath = "//ul[@class = 'list-inline']//i[@class = 'fa fa-shopping-cart']")
     private WebElement headerUpperCart;
@@ -51,7 +51,7 @@ public class HeaderPage extends BasePage {
     @FindBy(xpath = "//ul[@class = 'dropdown-menu']//li//button")
     private List<WebElement> headerCurrencyList;
 
-    @FindBy(xpath = "//div[@id = 'logo']//h1/a")
+    @FindBy(xpath = "//div[@id = 'logo']//a/img")
     private WebElement homeButton;
 
     @FindBy(xpath = "//ul[@class = 'dropdown-menu pull-right']//table[@class = 'table table-striped']/tbody/tr")
@@ -79,7 +79,7 @@ public class HeaderPage extends BasePage {
 
     public WebElement getHeaderCart() { return headerCart; }
 
-    public WebElement getHeaderShareButton() { return headerShareButton; }
+    public WebElement getHeaderCheckoutButton() { return headerCheckoutButton; }
 
     public WebElement getHeaderUpperCart() { return headerUpperCart; }
 

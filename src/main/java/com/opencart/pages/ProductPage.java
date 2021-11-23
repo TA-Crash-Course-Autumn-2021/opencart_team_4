@@ -69,7 +69,7 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//input[@value = '11']")
     private WebElement checkBoxSelectForth;
 
-    @FindBy(xpath = "//div[@class = 'form-group required']/input[@type = 'text']")
+    @FindBy(xpath = "//input[@id = 'input-option208']")
     private WebElement productHardFormText;
 
     @FindBy(xpath = "//div[@class = 'text-danger']")
