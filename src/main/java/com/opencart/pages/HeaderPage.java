@@ -1,10 +1,12 @@
 package com.opencart.pages;
 
+import com.opencart.driver.DriverRepository;
 import com.opencart.pages.containers.HeaderPageCartContainer;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
@@ -55,6 +57,9 @@ public class HeaderPage extends BasePage {
     @FindBy(xpath = "//ul[@class = 'dropdown-menu pull-right']//table[@class = 'table table-striped']/tbody/tr")
     private List<WebElement> headerCartProducts;
 
+    @FindBy(xpath = "//button[@class = 'btn btn-link dropdown-toggle']//strong")
+    private WebElement currencySymbol;
+
     public WebElement getMyAccountButton() {
         wait.until(ExpectedConditions.visibilityOf(myAccountButton));
         return myAccountButton;
@@ -90,7 +95,9 @@ public class HeaderPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfAllElements(headerCurrencyList));
         return headerCurrencyList; }
 
-    public WebElement getHomeButton() { return homeButton; }
+    public WebElement getHomeButton() {
+        DriverRepository.DRIVERS.get().manage().timeouts().implicitlyWait(20000, TimeUnit.MILLISECONDS);
+        return homeButton; }
 
     public List<WebElement> getHeaderCartProducts() { return headerCartProducts; }
 
@@ -98,5 +105,10 @@ public class HeaderPage extends BasePage {
 
     public List<HeaderPageCartContainer> getProducts() {
         return getHeaderCartProducts().stream().map(HeaderPageCartContainer::new).collect(Collectors.toList());
+    }
+
+    public WebElement getCurrencySymbol() {
+        wait.until(ExpectedConditions.visibilityOf(currencySymbol));
+        return currencySymbol;
     }
 }

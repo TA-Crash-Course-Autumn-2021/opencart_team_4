@@ -1,12 +1,16 @@
 package com.opencart.pages;
 
 
+import com.opencart.driver.DriverRepository;
 import lombok.Getter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.concurrent.TimeUnit;
 
 
-public class RightMenu {
+public class RightMenu extends BasePage{
     @Getter
     @FindBy(xpath = "//aside[@id = 'column-right']/div/a[text() = 'Login']")
     private WebElement login;
@@ -58,4 +62,16 @@ public class RightMenu {
     @Getter
     @FindBy(xpath = "//aside[@id = 'column-right']/div/a[text() = 'Newsletter']")
     private WebElement newsLetter;
+
+    @FindBy(xpath = "//a[contains(.,'Pass')]")
+    private WebElement changePassword;
+
+    @FindBy(xpath = "//div/a[contains(.,'Logout')]")
+    private WebElement logout;
+
+    public WebElement getLogout() {
+        DriverRepository.DRIVERS.get().manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
+        return logout; }
+
+    public WebElement getChangePassword() { return changePassword; }
 }

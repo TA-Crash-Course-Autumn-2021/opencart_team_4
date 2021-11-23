@@ -4,6 +4,8 @@ import com.opencart.driver.DriverRepository;
 import com.opencart.pages.SearchPage;
 import com.opencart.pages.containers.ProductContainer;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
 import java.util.concurrent.TimeUnit;
 
 public class SearchPageBL {
@@ -59,4 +61,16 @@ public class SearchPageBL {
         return new ProductPageBL();
     }
 
+    public SearchPageBL successSearchResult() {
+        int result = searchPage.getProducts().size();
+        Assert.assertTrue(result > 0, "Search string error");
+        return this;
+    }
+
+    public SearchPageBL unsuccessfulSearchResult() {
+        String expected = "There is no product that matches the search criteria.";
+        String actual = searchPage.getUnsuccessfulSearchingResult().getText();
+        Assert.assertEquals(actual, expected, "Search error");
+        return this;
+    }
 }

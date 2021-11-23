@@ -22,7 +22,8 @@ public class RegisterPageBL {
         inputLastName(registerModel.getLastName());
         inputEmail(registerModel.getEmail());
         inputTelephone(registerModel.getTelephone());
-        inputPassword(registerModel.getPassword());
+        inputInvalidPassword(registerModel.getPassword());
+        inputInvalidPasswordConfirm(registerModel.getPasswordConfirm());
         chooseSubscribe(1);
         clickPolicyCheckbox();
         clickOnContinueButton();
@@ -64,6 +65,16 @@ public class RegisterPageBL {
         registerPage.getTelephoneInput().sendKeys(telephone);
     }
 
+    private void inputInvalidPasswordConfirm(String passwordConfirm) {
+        registerPage.getPasswordConfirmInput().clear();
+        registerPage.getPasswordConfirmInput().sendKeys(passwordConfirm);
+    }
+
+    private void inputInvalidPassword(String password) {
+        registerPage.getPasswordInput().clear();
+        registerPage.getPasswordInput().sendKeys(password);
+    }
+
     private void inputPassword(String password) {
         registerPage.getPasswordInput().clear();
         registerPage.getPasswordInput().sendKeys(password);
@@ -88,7 +99,7 @@ public class RegisterPageBL {
         Assert.assertEquals(successRegisterPage.getSuccessTitle().getText(), expectedMessage, "Incorrect page title");
     }
 
-    public void passwordNotMatchError() {
+    public void passwordNotMatchCheck() {
         String expectedError = "Password confirmation does not match password!";
         Assert.assertTrue(registerPage.getUnsuccessPasswordMatch().contains(expectedError));
     }

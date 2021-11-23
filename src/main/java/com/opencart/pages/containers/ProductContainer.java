@@ -9,7 +9,7 @@ public class ProductContainer {
     public ProductContainer(WebElement element){ this.rootElement = element; }
 
     public WebElement productAddToCart(){
-       return rootElement.findElement(By.xpath("//div[@id = 'content']//button[@type ]/i[@class = 'fa fa-shopping-cart']/.."));
+       return rootElement.findElement(By.xpath("//div[@id = 'content']//*[contains(@class, 'shopping-cart')]/.."));
     }
 
     public WebElement productAddToWishList(){
@@ -25,7 +25,7 @@ public class ProductContainer {
     }
 
     public String productGetName(){
-        return rootElement.findElement(By.xpath("//h4/a")).getText();
+        return rootElement.findElement(By.xpath(".//h4/a")).getText();
     }
 
     public WebElement clickOnProduct(){

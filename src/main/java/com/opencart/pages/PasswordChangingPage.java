@@ -3,8 +3,9 @@ package com.opencart.pages;
 import lombok.Getter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-    @Getter
+@Getter
 public class PasswordChangingPage extends BasePage {
 
     @FindBy(id = "input-password")
@@ -19,6 +20,11 @@ public class PasswordChangingPage extends BasePage {
     @FindBy(xpath = "//div/a[text() = 'Back']")
     private WebElement changePasswordBackButton;
 
-    @FindBy(xpath = "//i[@class = 'fa fa-check-circle']")
+    @FindBy(xpath = "//div[@class = 'container']//div[contains( .,'Your password')]")
     private WebElement successLoginAlert;
-}
+
+        public WebElement getChangePasswordString() {
+            wait.until(ExpectedConditions.visibilityOf(changePasswordString));
+            return changePasswordString;
+        }
+    }

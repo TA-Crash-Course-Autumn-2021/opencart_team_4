@@ -6,6 +6,8 @@ import com.opencart.pages.LoginPage;
 import com.opencart.repository.RegisterModelRepository;
 import org.testng.Assert;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class LoginPageBL {
 
@@ -48,6 +50,14 @@ public class LoginPageBL {
         return this;
     }
 
+    public LoginPageBL loginValidChangedUser() {
+       RegisterModel loginModel = RegisterModelRepository.getValidModel();
+        loginPageSetEmail("mostavchuk@gmail.com");
+        loginPageSetPass(loginModel.getPassword());
+        loginPageLoginButtonClick();
+        return this;
+    }
+
     public LoginPageBL loginInvalidUser() {
        RegisterModel loginModel = RegisterModelRepository.getInvalidRegisterModel();
         loginPageSetEmail(loginModel.getEmail());
@@ -57,7 +67,8 @@ public class LoginPageBL {
     }
 
     public MyAccountPageBL successLoginCheck() {
-        String expected = "https://demo.opencart.com/index.php?route=account/account";
+        DriverRepository.DRIVERS.get().manage().timeouts().pageLoadTimeout(2, TimeUnit.SECONDS);
+        String expected = "http://localhost/opencart/upload/index.php?route=account/account";
         String actual = DriverRepository.DRIVERS.get().getCurrentUrl();
         Assert.assertEquals(expected, actual);
         return new MyAccountPageBL();

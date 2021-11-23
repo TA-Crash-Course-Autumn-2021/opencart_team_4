@@ -1,6 +1,9 @@
 package com.opencart.steps;
 
+import com.opencart.pages.Forms.CartHardForm;
+import com.opencart.pages.Forms.CartMediumForm;
 import com.opencart.pages.ProductPage;
+import org.testng.Assert;
 
 public class ProductPageBL {
 
@@ -28,9 +31,21 @@ public class ProductPageBL {
         return this;
     }
 
+    public ProductPageBL successfulProductAdding() {
+        String expected = "Success: You have added ";
+        String actual = productPage.getMediumFormAlert().getText();
+        Assert.assertTrue(actual.contains(expected), "Product not added to cart");
+        return this;
+    }
+
+    public ProductPageBL fieldRequiredCheck() {
+        String expected = "required";
+        String actual = productPage.getRequiredFieldAlert().getText();
+        Assert.assertTrue(actual.contains(expected));
+        return this;
+    }
+
     public void addProductToWishList(){
         productPage.getAddToWishList().click();
     }
-
-
 }

@@ -3,9 +3,10 @@ package com.opencart.pages;
 import lombok.Getter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-    @Getter
-public class LoginPage {
+
+public class LoginPage extends BasePage{
 
     @FindBy(xpath = "//a[text() = 'Continue']")
     private WebElement loginPageContinueCreateAccount;
@@ -24,4 +25,31 @@ public class LoginPage {
 
     @FindBy(xpath = "//div[@class = 'alert alert-danger alert-dismissible']")
     private WebElement unsuccessfulLoginAlert;
+
+    public WebElement getLoginPageContinueCreateAccount() {
+        wait.until(ExpectedConditions.visibilityOf(loginPageContinueCreateAccount));
+        return loginPageContinueCreateAccount;
+    }
+
+    public WebElement getLoginPageLoginButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(loginPageLoginButton));
+        return loginPageLoginButton;
+    }
+
+    public WebElement getLoginPageForgottenPass() {
+        return loginPageForgottenPass;
+    }
+
+    public WebElement getLoginPageSetEmail() {
+        return loginPageSetEmail;
+    }
+
+    public WebElement getLoginPageSetPassword() {
+        return loginPageSetPassword;
+    }
+
+    public WebElement getUnsuccessfulLoginAlert() {
+        wait.until(ExpectedConditions.visibilityOf(unsuccessfulLoginAlert));
+        return unsuccessfulLoginAlert;
+    }
 }

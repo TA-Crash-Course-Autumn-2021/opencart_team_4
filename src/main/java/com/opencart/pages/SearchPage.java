@@ -5,6 +5,7 @@ import com.opencart.pages.containers.ProductContainer;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,6 +36,9 @@ public class SearchPage extends BasePage {
     @FindBy(xpath = "//div[@class = 'product-thumb']")
     List<WebElement> products;
 
+    @FindBy(xpath = "//p[contains(.,'There ')]")
+    WebElement unsuccessfulSearchingResult;
+
     public List<WebElement> getSearchInCategories() {
         return searchInCategories;
     }
@@ -53,5 +57,10 @@ public class SearchPage extends BasePage {
 
     public List<ProductContainer> getProducts() {
         return products.stream().map(ProductContainer::new).collect(Collectors.toList());
+    }
+
+    public WebElement getUnsuccessfulSearchingResult() {
+        wait.until(ExpectedConditions.visibilityOf(unsuccessfulSearchingResult));
+        return unsuccessfulSearchingResult;
     }
 }

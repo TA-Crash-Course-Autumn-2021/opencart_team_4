@@ -17,20 +17,28 @@ public class SearchPageTest extends BaseTest {
                 .setSearchCategory("Desktops")
                 .searchInDescription()
                 .searchInSubcategories()
-                .searchPageProductClick(product)
-                .setQuantity(2)
-                .addToCart();
+                .successSearchResult();
     }
 
     @Test
-    public void searchSpecificProduct() throws Exception{
+    public void searchForProductValid() throws Exception{
         String product = "iPhone";
         new Navigation().navigateToUrl(BASE_URL.getValue());
         MainPageBL mainPageBL = new MainPageBL();
-        mainPageBL.getHeaderPageBL().useSearch(product)
+        mainPageBL.getHeaderPageBL()
+                .useSearch(product)
                 .searchInDescription()
-                .searchPageProductClick(product)
-                .addToCart();
+                .successSearchResult();
+    }
+
+    @Test
+    public void searchForProductInvalid() throws Exception{
+        String product = "ththyj";
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
+        mainPageBL.getHeaderPageBL()
+                .useSearch(product)
+                .searchInDescription()
+                .unsuccessfulSearchResult();
     }
 }
-

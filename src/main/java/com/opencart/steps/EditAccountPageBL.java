@@ -1,6 +1,9 @@
 package com.opencart.steps;
 
+import com.opencart.datamodel.RegisterModel;
 import com.opencart.pages.EditAccountPage;
+import com.opencart.repository.RegisterModelRepository;
+import org.testng.Assert;
 
 public class EditAccountPageBL {
 
@@ -32,8 +35,15 @@ public class EditAccountPageBL {
         return this;
     }
 
-    public MyAccountPageBL editAccountPageContinueButtonClick(){
+    public EditAccountPageBL editAccountPageContinueButtonClick(){
         editAccountPage.getEditAccountContinueButton().click();
-        return new MyAccountPageBL();
+        return this;
+    }
+
+    public MyAccountPageBL confirmAccountChanging() {
+       String actual =  editAccountPage.getChangesConfirmMessage().getText();
+       String expected = "Success: Your account has been successfully updated.";
+       Assert.assertTrue(actual.contains(expected), "Changes are not success");
+       return new MyAccountPageBL();
     }
 }
