@@ -1,11 +1,16 @@
 package com.opencart.steps;
 
+import com.opencart.driver.DriverRepository;
 import com.opencart.pages.Forms.CartHardForm;
 import com.opencart.pages.Forms.CartMediumForm;
 import com.opencart.pages.HomePage;
 import com.opencart.pages.containers.ProductContainer;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 
@@ -89,6 +94,23 @@ public class HomePageBL {
        String expected = "shopping cart";
        String actual = homePage.getSuccessfulAddToCartAlert().getText();
        Assert.assertTrue(actual.contains(expected), "Error: product not added to cart");
+       return this;
+   }
+
+   public HomePageBL unsuccessfulAddToWishListAlert() {
+      String expected = "login";
+      String actual =  homePage.getUnsuccessfulAddToWishListAlert().getText();
+      Assert.assertTrue(actual.contains(expected), "Error: logout or unregistered user can add product to \"WishList\"");
+      return this;
+   }
+
+   public HomePageBL productAddAlertAccept() {
+       try {
+           Alert alert = (new WebDriverWait(DriverRepository.DRIVERS.get(), 10).until(ExpectedConditions.alertIsPresent()));
+           DriverRepository.DRIVERS.get().switchTo().alert().accept();
+       } catch (NoAlertPresentException e) {
+           System.out.println("Error: alert is not present");
+       }
        return this;
    }
 }

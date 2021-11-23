@@ -1,10 +1,11 @@
 import com.opencart.enums.Currencies;
 import com.opencart.navigation.Navigation;
-import com.opencart.pages.HomePage;
 import com.opencart.steps.HomePageBL;
 import com.opencart.steps.MainPageBL;
 import org.testng.annotations.Test;
 
+
+import java.awt.*;
 
 import static com.opencart.enums.URLs.BASE_URL;
 
@@ -50,7 +51,7 @@ public class HomePageTest extends BaseTest{
     }
 
     @Test
-    public void appleCinemaAddToCartTest() {
+    public void appleCinemaAddToCartTest() throws InterruptedException, AWTException {
         new Navigation().navigateToUrl(BASE_URL.getValue());
         HomePageBL homePageBL = new HomePageBL();
         homePageBL.appleAddToCart()
@@ -60,6 +61,40 @@ public class HomePageTest extends BaseTest{
                 .selectYellow().hardFormSetTextArea("Valid add to cart test")
                 .hardFormSetDate()
                 .hardFormSetHour()
-                .hardFormSetDateAndHour();
+                .hardFormSetDateAndHour()
+                .hardFormUploadFile()
+                .cartHardFormAlertAccept()
+                .addToCart()
+                .successfulProductAdding();
+    }
+
+    @Test
+    public void logoutUserAddToWishListNegativeTest() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        HomePageBL homePageBL = new HomePageBL();
+        homePageBL.iphoneAddToWishList().unsuccessfulAddToWishListAlert();
+    }
+
+    @Test void loggedUserAddTwoProductsToWishListValidTest() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton()
+                .loginValidUser();
+        mainPageBL.getHeaderPageBL()
+                .headerClickOnHomeButton()
+                .iphoneAddToWishList()
+                .productAddAlertAccept()
+                .appleAddToWishList()
+                .productAddAlertAccept();
+    }
+
+    @Test
+    public void logoutUserProductAddToCompare() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        HomePageBL homePageBL = new HomePageBL();
+        homePageBL.appleAddToCompare()
+                .productAddAlertAccept();
     }
 }

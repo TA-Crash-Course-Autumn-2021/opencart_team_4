@@ -68,6 +68,9 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']/a[contains(., 'shopping')]")
     private WebElement successfulAddToCartAlert;
 
+    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']/a[contains(.,'login')]")
+    private WebElement unsuccessfulAddToWishListAlert;
+
     public List<WebElement> getProducts() {
         wait.until(ExpectedConditions.visibilityOfAllElements(products));
         return products;
@@ -145,5 +148,10 @@ public class HomePage extends BasePage{
     public WebElement getSuccessfulAddToCartAlert() {
         wait.until(ExpectedConditions.visibilityOf(successfulAddToCartAlert));
         return successfulAddToCartAlert;
+    }
+
+    public WebElement getUnsuccessfulAddToWishListAlert() {
+        wait.until(ExpectedConditions.visibilityOf(unsuccessfulAddToWishListAlert));
+        return unsuccessfulAddToWishListAlert;
     }
 }
