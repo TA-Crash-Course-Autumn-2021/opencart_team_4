@@ -64,5 +64,4 @@ public class LoginTest extends BaseTest{
                 .getRightMenuBL()
                 .clickOnLogoutButton();
     }
-
 }

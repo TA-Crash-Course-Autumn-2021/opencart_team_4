@@ -1,5 +1,6 @@
 import com.opencart.enums.Currencies;
 import com.opencart.navigation.Navigation;
+import com.opencart.pages.HomePage;
 import com.opencart.steps.HomePageBL;
 import com.opencart.steps.MainPageBL;
 import org.testng.annotations.Test;
@@ -27,7 +28,11 @@ public class HomePageTest extends BaseTest{
     public void oneProductAddingToCartWitQuantityChangingTest() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
         HomePageBL homePageBL = new HomePageBL();
-        homePageBL.canonAddToCart().productOptionSelectBlue().setQuantity(2).addToCart().successfulProductAdding();
+        homePageBL.canonAddToCart()
+                .productOptionSelectBlue()
+                .setQuantity(2)
+                .addToCart()
+                .successfulProductAdding();
     }
 
     @Test
@@ -58,7 +63,8 @@ public class HomePageTest extends BaseTest{
                 .radioSelectMedium()
                 .checkboxSelectForth()
                 .hardFormSetText("Text field testing")
-                .selectYellow().hardFormSetTextArea("Valid add to cart test")
+                .selectYellow()
+                .hardFormSetTextArea("Valid add to cart test")
                 .hardFormSetDate()
                 .hardFormSetHour()
                 .hardFormSetDateAndHour()
@@ -85,9 +91,25 @@ public class HomePageTest extends BaseTest{
         mainPageBL.getHeaderPageBL()
                 .headerClickOnHomeButton()
                 .iphoneAddToWishList()
-                .productAddAlertAccept()
-                .appleAddToWishList()
-                .productAddAlertAccept();
+                .successfulAddToWishListAlert()
+                .macbookAddToWishList()
+                .successfulAddToWishListAlert();
+    }
+
+    @Test
+    public void loginUserFourProductAddToWishList() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton()
+                .loginValidUser();
+        mainPageBL.getHeaderPageBL()
+                .headerClickOnHomeButton()
+                .iphoneAddToWishList().successfulAddToWishListAlert()
+                .macbookAddToWishList().successfulAddToWishListAlert()
+                .canonAddToWishList().successfulAddToWishListAlert()
+                .appleAddToWishList().successfulAddToWishListAlert();
     }
 
     @Test
@@ -95,6 +117,50 @@ public class HomePageTest extends BaseTest{
         new Navigation().navigateToUrl(BASE_URL.getValue());
         HomePageBL homePageBL = new HomePageBL();
         homePageBL.appleAddToCompare()
-                .productAddAlertAccept();
+                .successfulAddToCompareAlert();
+    }
+
+    @Test
+    public void loginUserOneProductAddToCompare() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        HomePageBL homePageBL = new HomePageBL();
+        homePageBL
+                .appleAddToCompare()
+                .successfulAddToCompareAlert();
+    }
+
+    @Test
+    public void loginUserTwoProductAddToCompare() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        HomePageBL homePageBL = new HomePageBL();
+        homePageBL
+                .appleAddToCompare()
+                .successfulAddToCompareAlert()
+                .macbookAddToCompare()
+                .successfulAddToCompareAlert();
+    }
+
+    @Test
+    public void loginUserSixProductsAddToCompare() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
+        mainPageBL.getHeaderPageBL()
+                .useSearch("Samsung SyncMaster 941BW")
+                .searchClickOnProduct("Samsung SyncMaster 941BW")
+                .addProductToCompare().successfulProductAdding();
+        mainPageBL.getHeaderPageBL()
+                .useSearch("Nikon D300")
+                .searchClickOnProduct("Nikon D300")
+                .addProductToCompare().successfulProductAdding();
+        mainPageBL.getHeaderPageBL()
+                .useSearch("apple")
+                .searchInDescription()
+                .searchClickOnProduct("Apple Cinema 30\"")
+                .addProductToCompare().successfulProductAdding();
+        mainPageBL.getHeaderPageBL()
+                .headerClickOnHomeButton()
+                .iphoneAddToCompare().successfulAddToCompareAlert()
+                .canonAddToCompare().successfulAddToCompareAlert()
+                .macbookAddToCompare().successfulAddToCompareAlert();
     }
 }

@@ -27,7 +27,7 @@ public class LoginPage extends BasePage{
     private WebElement unsuccessfulLoginAlert;
 
     public WebElement getLoginPageContinueCreateAccount() {
-        wait.until(ExpectedConditions.visibilityOf(loginPageContinueCreateAccount));
+        wait.until(ExpectedConditions.elementToBeClickable(loginPageContinueCreateAccount));
         return loginPageContinueCreateAccount;
     }
 

@@ -10,7 +10,6 @@ public class BaseTest {
 
     @BeforeClass
     public void createDriver() { DriverRepository.instanceWebBrowser();}
-    //changes
 
     @AfterSuite
     public void closeBrowser() {
