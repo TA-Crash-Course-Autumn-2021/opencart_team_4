@@ -87,6 +87,9 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//input[@id = 'input-option220']")
     private WebElement productHardFormDateAndHour;
 
+    @FindBy(xpath = "//button[@id = 'button-upload222']")
+    private WebElement productHardFormUploadButton;
+
     public WebElement getProductName() { return productName;}
 
     public WebElement getAddToCart() {
@@ -198,5 +201,10 @@ public class ProductPage extends BasePage{
     public WebElement getProductHardFormDateAndHour() {
         wait.until(ExpectedConditions.elementToBeClickable(productHardFormDateAndHour));
         return productHardFormDateAndHour;
+    }
+
+    public WebElement getProductHardFormUploadButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(productHardFormUploadButton));
+        return productHardFormUploadButton;
     }
 }

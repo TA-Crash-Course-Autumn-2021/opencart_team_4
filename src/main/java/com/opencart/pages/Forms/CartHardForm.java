@@ -1,12 +1,22 @@
 package com.opencart.pages.Forms;
 
 
+import com.opencart.driver.DriverRepository;
 import com.opencart.pages.ProductPage;
 import com.opencart.steps.ProductPageBL;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+import java.sql.Driver;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class CartHardForm extends ProductPageBL {
 
@@ -109,6 +119,33 @@ public class CartHardForm extends ProductPageBL {
         Date date = new Date(System.currentTimeMillis());
         String dateAndHour = format.format(date);
         productPage.getProductHardFormDateAndHour().sendKeys(dateAndHour);
+        return this;
+    }
+
+    public CartHardForm hardFormUploadFile() throws InterruptedException, AWTException {
+        Robot robot = new Robot();
+        productPage.getProductHardFormUploadButton().click();
+        Thread.sleep(2000);
+        StringSelection path = new StringSelection("C:\\Users\\Sviatoslav\\Desktop\\IT\\Study\\Framework\\OpenCart\\files\\TestFile.txt");
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(path, null);
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyRelease(KeyEvent.VK_V);
+
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        return this;
+    }
+
+    public CartHardForm cartHardFormAlertAccept() {
+        try {
+            Alert alert = (new WebDriverWait(DriverRepository.DRIVERS.get(), 10).until(ExpectedConditions.alertIsPresent()));
+            DriverRepository.DRIVERS.get().switchTo().alert().accept();
+        } catch (NoAlertPresentException e) {
+            System.out.println("Alert is not present");
+        }
         return this;
     }
 }
