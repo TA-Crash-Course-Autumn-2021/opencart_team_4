@@ -41,12 +41,41 @@ public class CheckoutPageBL {
         return this;
     }
 
-    public CheckoutPageBL stepTwoSetTemplate() {
+    public CheckoutPageBL checkoutStandardTemplate(String commentText) {
         checkoutPage.getStepTwoNewAddress().click();
         checkoutSetStandardUserVars();
         setCountry();
         setRegion();
         checkoutPage.getStepTwoContinueButton().click();
+        checkoutPage.getCheckoutStep3Open().click();
+        checkoutPage.getStepThreeContinueButton().click();
+        stepFourSelectFlatRate(commentText);
+        stepFiveSelectCashOnDelivery(commentText);
+        checkoutPage.getStepSixOrderConfirmButton().click();
+        return this;
+    }
+
+    public CheckoutPageBL stepThreeClick() {
+        checkoutPage.getCheckoutStep3Open().click();
+        return this;
+    }
+
+    public CheckoutPageBL stepFourSelectFlatRate(String orderComment) {
+        checkoutPage.getCheckoutStep4Open().click();
+        checkoutPage.getRadioFlatShipping().click();
+        checkoutPage.getTextArea().clear();
+        checkoutPage.getTextArea().sendKeys(orderComment);
+        checkoutPage.getStepFourContinueButton().click();
+        return this;
+    }
+
+    public CheckoutPageBL stepFiveSelectCashOnDelivery(String commentOrder) {
+        checkoutPage.getCheckoutStep5Open().click();
+        checkoutPage.getRadioPaymentMethod().click();
+        checkoutPage.getTextArea().clear();
+        checkoutPage.getTextArea().sendKeys(commentOrder);
+        checkoutPage.getCheckBoxTermsAndConditions().click();
+        checkoutPage.getStepFiveContinueButton().click();
         return this;
     }
 }

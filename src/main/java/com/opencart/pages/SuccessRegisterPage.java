@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SuccessRegisterPage extends BasePage {
 
-    @FindBy(xpath = ".//*[@id='content']/h1")
+    @FindBy(xpath = "//div[@id='content']/h1")
     private WebElement successTitle;
 
     public WebElement getSuccessTitle() {

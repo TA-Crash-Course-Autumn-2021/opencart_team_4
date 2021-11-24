@@ -1,16 +1,27 @@
 package com.opencart.repository;
 
 import com.opencart.datamodel.RegisterModel;
+import com.opencart.steps.LoginPageBL;
 import org.apache.commons.lang3.RandomStringUtils;
 
 
 public class RegisterModelRepository {
 
+    private static final String randomPassword = RandomStringUtils.randomAlphabetic(7);
+    private static final String randomEmail = RandomStringUtils.randomAlphabetic(5) + "@gmail.com";
     private String validUserPassword;
 
     public RegisterModelRepository() {
     }
 
+    public static LoginPageBL getLoginRandomUser() {
+        RegisterModel model = RegisterModelRepository.getNewRandomRegisterModel();
+        LoginPageBL loginPageBL = new LoginPageBL();
+        loginPageBL.loginPageSetEmail(randomEmail);
+        loginPageBL.loginPageSetPass(randomPassword);
+        loginPageBL.loginPageLoginButtonClick();
+        return new LoginPageBL();
+    }
 
     public static RegisterModel getInvalidRegisterModel() {
         String password = RandomStringUtils.randomAlphabetic(7);
@@ -34,6 +45,17 @@ public class RegisterModelRepository {
                 .telephone("+38056445676")
                 .password(password)
                 .passwordConfirm(password)
+                .build();
+    }
+
+    public static RegisterModel getNewRandomRegisterModel() {
+        return RegisterModel.getBuilder()
+                .firstName(RandomStringUtils.randomAlphabetic(5))
+                .lastName(RandomStringUtils.randomAlphabetic(5))
+                .email(randomEmail)
+                .telephone(RandomStringUtils.randomNumeric(10))
+                .password(randomPassword)
+                .passwordConfirm(randomPassword)
                 .build();
     }
 

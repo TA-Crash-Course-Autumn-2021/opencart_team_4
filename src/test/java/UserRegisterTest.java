@@ -2,6 +2,7 @@ import com.opencart.navigation.Navigation;
 import com.opencart.pages.SuccessRegisterPage;
 import com.opencart.steps.MainPageBL;
 import com.opencart.steps.RegisterPageBL;
+import com.opencart.steps.SuccessRegisterPageBL;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -25,10 +26,9 @@ public class UserRegisterTest extends BaseTest {
     public void registerUserWithValidParameters() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
         MainPageBL mainPageBL = new MainPageBL();
-        RegisterPageBL registerPageBL = mainPageBL.getHeaderPageBL()
+                mainPageBL.getHeaderPageBL()
                 .clickOnMyAccountButton()
                 .clickOnRegisterButton()
-                .registerNewValidPerson();
-        registerPageBL.verifyUserRegistration();
+                .registerNewRandomPerson().getRegisterVerify();
     }
 }
