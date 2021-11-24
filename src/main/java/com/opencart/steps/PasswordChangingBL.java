@@ -11,16 +11,21 @@ public class PasswordChangingBL {
 
     public PasswordChangingBL() { passwordChangingPage = new PasswordChangingPage(); }
 
-    public PasswordChangingBL validLoginChange(String newPassword) {
+    public PasswordChangingBL validPasswordChange(String newPassword) {
         passwordChangingPage.getChangePasswordString().clear();
         passwordChangingPage.getChangePasswordString().sendKeys(newPassword);
         passwordChangingPage.getChangePasswordConfirmString().clear();
         passwordChangingPage.getChangePasswordConfirmString().sendKeys(newPassword);
         passwordChangingPage.getChangePasswordContinueButton().click();
-        RegisterModelRepository registerModelRepository = new RegisterModelRepository();
-        registerModelRepository.setValidUserPassword(newPassword);
         return this;
     }
+
+    public PasswordChangingBL randomUserNewPassLogin(String newPassword) {
+        validPasswordChange(newPassword);
+        LoginPageBL.setNewPassword(newPassword);
+        return this;
+    }
+
 
     public MyAccountPageBL successLoginCheck() {
         String expectingMessage = "Success: Your password has been successfully updated.";

@@ -14,6 +14,7 @@ public class LoginPageBL {
     private String loginEmail;
     private String loginPassword;
     private LoginPage loginPage;
+    private static String newPassword;
 
     public LoginPageBL() { loginPage = new LoginPage(); }
 
@@ -23,6 +24,7 @@ public class LoginPageBL {
         loginPage.getLoginPageSetPassword().sendKeys(password);
         return this;
     }
+
 
     public LoginPageBL loginPageSetEmail(String email) {
         loginPage.getLoginPageSetEmail().clear();
@@ -53,12 +55,14 @@ public class LoginPageBL {
         return this;
     }
 
-    public LoginPageBL loginValidChangedUser() {
-       RegisterModel loginModel = RegisterModelRepository.getValidModel();
-        loginPageSetEmail("mostavchuk@gmail.com");
-        loginPageSetPass(loginModel.getPassword());
-        loginPageLoginButtonClick();
-        return this;
+
+    public LoginPageBL loginRandomChangedUser() {
+        RegisterModel model = RegisterModelRepository.getNewRandomRegisterModel();
+        LoginPageBL loginPageBL = new LoginPageBL();
+        loginPageBL.loginPageSetEmail(model.getEmail());
+        loginPageBL.loginPageSetPass(newPassword);
+        loginPageBL.loginPageLoginButtonClick();
+        return new LoginPageBL();
     }
 
     public LoginPageBL loginInvalidUser() {
@@ -83,6 +87,8 @@ public class LoginPageBL {
         Assert.assertEquals(expected, actual);
         return this;
     }
+
+    public static void setNewPassword(String newPassword) { LoginPageBL.newPassword = newPassword;}
 
     public void setLoginEmail(String loginEmail) { this.loginEmail = loginEmail; }
 
