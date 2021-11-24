@@ -27,7 +27,7 @@ public class UserStories extends BaseTest {
                 .loginValidUser()
                 .successLoginCheck()
                 .myAccountPassChangeClick()
-                .validLoginChange("6655566")
+                .validPasswordChange("6655566")
                 .successLoginCheck()
                 .getRightMenuBL()
                 .clickOnLogoutButton();
@@ -41,8 +41,23 @@ public class UserStories extends BaseTest {
                 .clickOnRegisterButton()
                 .registerNewRandomPerson().getRegisterVerify();
         RegisterModel model = RegisterModelRepository.getNewRandomRegisterModel();
-        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
-        mainPageBL.getHeaderPageBL().clickOnMyAccountButton()
-                .clickOnLoginButton().loginRandom().successLoginCheck().myAccountPassChangeClick();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLogoutButton();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton()
+                .loginRandom()
+                .successLoginCheck()
+                .myAccountPassChangeClick()
+                .randomUserNewPassLogin("666666")
+                .successLoginCheck()
+                .getRightMenuBL()
+                .clickOnLogoutButton();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton()
+                .loginRandomChangedUser()
+                .successLoginCheck();
     }
 }

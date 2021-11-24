@@ -43,7 +43,7 @@ public class LoginTest extends BaseTest{
                 .loginValidUser()
                 .successLoginCheck()
                 .myAccountPassChangeClick()
-                .validLoginChange("6655566")
+                .validPasswordChange("6655566")
                 .successLoginCheck()
                 .getRightMenuBL()
                 .clickOnLogoutButton();
@@ -59,7 +59,7 @@ public class LoginTest extends BaseTest{
                 .loginValidUser()
                 .successLoginCheck()
                 .myAccountPassChangeClick()
-                .validLoginChange("6655566")
+                .validPasswordChange("6655566")
                 .successLoginCheck()
                 .getRightMenuBL()
                 .clickOnLogoutButton();

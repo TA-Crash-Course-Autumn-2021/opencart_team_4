@@ -9,6 +9,7 @@ public class RegisterModelRepository {
 
     private static final String randomPassword = RandomStringUtils.randomAlphabetic(7);
     private static final String randomEmail = RandomStringUtils.randomAlphabetic(5) + "@gmail.com";
+    private static  String newPassword;
     private String validUserPassword;
 
     public RegisterModelRepository() {
@@ -60,4 +61,6 @@ public class RegisterModelRepository {
     }
 
     public void setValidUserPassword(String validUserPassword) { this.validUserPassword = validUserPassword;}
+
+    public static void setNewPassword(String newPassword) { RegisterModelRepository.newPassword = newPassword; }
 }
