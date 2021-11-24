@@ -72,13 +72,16 @@ public class CheckoutPage extends BasePage {
     private WebElement stepFiveContinueButton;
 
     @FindBy(xpath = "//input[@id = 'button-confirm']")
-    private WebElement stepSevenOrderConfirmButton;
+    private WebElement stepSixOrderConfirmButton;
 
     @FindBy(xpath = "//input[@value = 'new']")
     private WebElement stepTwoNewAddress;
 
     @FindBy(xpath = "//input[@value = 'existing']")
     private WebElement stepTwoExistingAddress;
+
+    @FindBy(xpath = "//div[@id = 'collapse-payment-method']/..//a")
+    private WebElement checkoutStep5Open;
 
     public WebElement getCheckoutFirstName() {
         wait.until(ExpectedConditions.elementToBeClickable(checkoutFirstName));
@@ -185,9 +188,9 @@ public class CheckoutPage extends BasePage {
         return stepFiveContinueButton;
     }
 
-    public WebElement getStepSevenOrderConfirmButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(stepSevenOrderConfirmButton));
-        return stepSevenOrderConfirmButton;
+    public WebElement getStepSixOrderConfirmButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(stepSixOrderConfirmButton));
+        return stepSixOrderConfirmButton;
     }
 
     public WebElement getStepTwoNewAddress() {
@@ -198,5 +201,10 @@ public class CheckoutPage extends BasePage {
     public WebElement getStepTwoExistingAddress() {
         wait.until(ExpectedConditions.elementToBeClickable(stepTwoExistingAddress));
         return stepTwoExistingAddress;
+    }
+
+    public WebElement getCheckoutStep5Open() {
+        wait.until(ExpectedConditions.elementToBeClickable(checkoutStep5Open));
+        return checkoutStep5Open;
     }
 }

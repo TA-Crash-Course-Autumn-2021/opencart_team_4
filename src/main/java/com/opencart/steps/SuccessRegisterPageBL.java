@@ -9,9 +9,10 @@ public class SuccessRegisterPageBL {
 
     public SuccessRegisterPageBL() { successRegisterPage = new SuccessRegisterPage(); }
 
-    public void getRegisterVerify() {
-      String expected = successRegisterPage.getSuccessTitle().getText();
-      String actual = "Your Account Has Been Created!";
-        Assert.assertEquals(expected, actual, "Registration was not verified");
+    public SuccessRegisterPageBL getRegisterVerify() {
+      String actual = successRegisterPage.getSuccessTitle().getText();
+      String expected = "Your Account Has Been Created!";
+        Assert.assertTrue(actual.contains(expected), "Registration was not verified");
+        return this;
     }
 }

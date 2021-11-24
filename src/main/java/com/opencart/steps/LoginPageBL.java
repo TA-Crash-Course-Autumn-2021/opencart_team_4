@@ -11,9 +11,12 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginPageBL {
 
+    private String loginEmail;
+    private String loginPassword;
     private LoginPage loginPage;
 
     public LoginPageBL() { loginPage = new LoginPage(); }
+
 
     public LoginPageBL loginPageSetPass(String password){
         loginPage.getLoginPageSetPassword().clear();
@@ -78,6 +81,15 @@ public class LoginPageBL {
         String expected = "Warning: No match for E-Mail Address and/or Password.";
         String actual = loginPage.getUnsuccessfulLoginAlert().getText();
         Assert.assertEquals(expected, actual);
+        return this;
+    }
+
+    public void setLoginEmail(String loginEmail) { this.loginEmail = loginEmail; }
+
+    public void setLoginPassword(String loginPassword) { this.loginPassword = loginPassword; }
+
+    public LoginPageBL loginRandom() {
+        RegisterModelRepository.getLoginRandomUser();
         return this;
     }
 }

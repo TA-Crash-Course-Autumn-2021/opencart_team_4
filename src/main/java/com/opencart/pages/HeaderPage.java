@@ -96,7 +96,7 @@ public class HeaderPage extends BasePage {
         return headerCurrencyList; }
 
     public WebElement getHomeButton() {
-        DriverRepository.DRIVERS.get().manage().timeouts().implicitlyWait(20000, TimeUnit.MILLISECONDS);
+        wait.until(ExpectedConditions.elementToBeClickable(homeButton));
         return homeButton; }
 
     public List<WebElement> getHeaderCartProducts() { return headerCartProducts; }

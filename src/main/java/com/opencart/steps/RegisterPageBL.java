@@ -30,6 +30,22 @@ public class RegisterPageBL {
         return this;
     }
 
+    public SuccessRegisterPageBL registerNewRandomPerson() {
+        RegisterModel registerModel = RegisterModelRepository.getNewRandomRegisterModel();
+        String password = registerModel.getPassword();
+        String email = registerModel.getEmail();
+        inputFirstName(registerModel.getFirstName());
+        inputLastName(registerModel.getLastName());
+        inputEmail(email);
+        inputTelephone(registerModel.getTelephone());
+        inputInvalidPassword(password);
+        inputInvalidPasswordConfirm(registerModel.getPasswordConfirm());
+        chooseSubscribe(1);
+        clickPolicyCheckbox();
+        clickOnContinueButton();
+        return new SuccessRegisterPageBL();
+    }
+
     public RegisterPageBL registerNewValidPerson() {
         RegisterModel registerModel = RegisterModelRepository.getValidModel();
         inputFirstName(registerModel.getFirstName());
@@ -96,7 +112,8 @@ public class RegisterPageBL {
 
     public void verifyUserRegistration() {
         String expectedMessage = "Your Account Has Been Created!";
-        Assert.assertEquals(successRegisterPage.getSuccessTitle().getText(), expectedMessage, "Incorrect page title");
+        String actualMessage = successRegisterPage.getSuccessTitle().getText();
+        Assert.assertTrue(actualMessage.contains(expectedMessage), "Incorrect page title");
     }
 
     public void passwordNotMatchCheck() {
