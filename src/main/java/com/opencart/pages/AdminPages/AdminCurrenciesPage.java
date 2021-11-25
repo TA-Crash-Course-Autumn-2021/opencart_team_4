@@ -4,6 +4,7 @@ import com.opencart.pages.BasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 
 public class AdminCurrenciesPage extends BasePage {
 
@@ -18,6 +19,9 @@ public class AdminCurrenciesPage extends BasePage {
 
     @FindBy(xpath = "//td[contains(.,'Hry')]/..//input")
     private WebElement selectHryvnia;
+
+    @FindBy(xpath = "//td[@class = 'text-right']//a[@data-toggle = 'tooltip']")
+    private WebElement editCurrency;
 
     public WebElement getSelectHryvnia() {
         wait.until(ExpectedConditions.elementToBeClickable(selectHryvnia));
@@ -37,5 +41,10 @@ public class AdminCurrenciesPage extends BasePage {
     public WebElement getDeleteCurrency() {
         wait.until(ExpectedConditions.elementToBeClickable(deleteCurrency));
         return deleteCurrency;
+    }
+
+    public WebElement getEditCurrency() {
+        wait.until(ExpectedConditions.elementToBeClickable(editCurrency));
+        return editCurrency;
     }
 }
