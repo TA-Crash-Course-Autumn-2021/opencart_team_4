@@ -2,7 +2,7 @@ package com.opencart.steps.AdminSteps.Subcategories;
 
 import com.opencart.pages.AdminPages.AdminNavigationBar;
 import com.opencart.steps.AdminSteps.AdminCurrenciesPageBL;
-import com.opencart.steps.AdminSteps.AdminLoginPageBL;
+
 
 public class LocalisationSubcategory {
 
@@ -13,5 +13,10 @@ public class LocalisationSubcategory {
     public AdminCurrenciesPageBL clickOnCurrencies() {
         adminNavigationBar.getCurrecncies().click();
         return new AdminCurrenciesPageBL();
+    }
+
+    public TaxSubSubCategory clickOnTaxes() {
+        adminNavigationBar.getTaxesSubCategory().click();
+        return new TaxSubSubCategory();
     }
 }
