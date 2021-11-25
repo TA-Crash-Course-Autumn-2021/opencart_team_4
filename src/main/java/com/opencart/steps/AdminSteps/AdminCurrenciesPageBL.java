@@ -30,6 +30,11 @@ public class AdminCurrenciesPageBL {
         return new AdminNewCurrencyBL();
     }
 
+    public AdminEditCurrencyBL clickOnEditCurrencyButton() {
+        adminCurrenciesPage.getEditCurrency().click();
+        return new AdminEditCurrencyBL();
+    }
+
     public AdminNewCurrencyBL deleteHryvniaCurrency() {
         adminCurrenciesPage.getSelectHryvnia().click();
         adminCurrenciesPage.getDeleteCurrency().click();
