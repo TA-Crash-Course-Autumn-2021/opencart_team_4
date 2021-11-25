@@ -1,8 +1,8 @@
 import com.opencart.enums.Currencies;
 import com.opencart.navigation.Navigation;
-import com.opencart.steps.AdminSteps.AdminDashboardPageBL;
 import com.opencart.steps.AdminSteps.AdminLoginPageBL;
 import com.opencart.steps.AdminSteps.AdminMainPageBL;
+import com.opencart.steps.AdminSteps.AdminNavigationBarBL;
 import com.opencart.steps.MainPageBL;
 import org.testng.annotations.Test;
 
@@ -44,5 +44,48 @@ public class AdminPageTest extends BaseTest {
                 .clickOnLocalisation()
                 .clickOnCurrencies()
                 .deleteHryvniaCurrency();
+    }
+
+    @Test
+    public void adminNewTaxRates() {
+        new Navigation().navigateToUrl(ADMIN_URL.getValue());
+        AdminLoginPageBL adminLoginPageBL = new AdminLoginPageBL();
+        adminLoginPageBL.loginAdmin().loginAdminCheck();
+        AdminNavigationBarBL adminNavigationBarBL = new AdminNavigationBarBL();
+        adminNavigationBarBL.categorySystemClick()
+                .clickOnLocalisation()
+                .clickOnTaxes()
+                .taxRatesClick()
+                .addNewTaxClass()
+                .newTestTaxRate()
+                .taxRateChangesCheck();
+    }
+
+    @Test
+    public void adminNewTaxRatesEdit() {
+        new Navigation().navigateToUrl(ADMIN_URL.getValue());
+        AdminLoginPageBL adminLoginPageBL = new AdminLoginPageBL();
+        adminLoginPageBL.loginAdmin().loginAdminCheck();
+        AdminNavigationBarBL adminNavigationBarBL = new AdminNavigationBarBL();
+        adminNavigationBarBL.categorySystemClick()
+                .clickOnLocalisation()
+                .clickOnTaxes()
+                .taxRatesClick()
+                .clickOnTaxEdit()
+                .changeTestTaxRate();
+    }
+
+    @Test
+    public void adminNewTaxRatesDelete() {
+        new Navigation().navigateToUrl(ADMIN_URL.getValue());
+        AdminLoginPageBL adminLoginPageBL = new AdminLoginPageBL();
+        adminLoginPageBL.loginAdmin().loginAdminCheck();
+        AdminNavigationBarBL adminNavigationBarBL = new AdminNavigationBarBL();
+        adminNavigationBarBL.categorySystemClick()
+                .clickOnLocalisation()
+                .clickOnTaxes()
+                .taxRatesClick()
+                .deleteTestTax()
+                .taxRateChangesCheck();
     }
 }
