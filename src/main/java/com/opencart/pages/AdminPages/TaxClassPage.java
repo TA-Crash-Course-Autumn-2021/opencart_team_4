@@ -43,8 +43,11 @@ public class TaxClassPage extends BasePage {
     @FindBy(xpath = "//td[contains(.,'Test')]/..//input")
     private WebElement selectTestTaxClass;
 
-    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']")
+    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible'][contains(.,'Succes')]")
     private WebElement taxClassAlert;
+
+    @FindBy(xpath = "//td[contains(.,'Test')]/..//a")
+    private WebElement editTestClassTax;
 
     public WebElement getAddNew() {
         wait.until(ExpectedConditions.elementToBeClickable(addNew));
@@ -109,5 +112,10 @@ public class TaxClassPage extends BasePage {
     public WebElement getTaxClassAlert() {
         wait.until(ExpectedConditions.elementToBeClickable(taxClassAlert));
         return taxClassAlert;
+    }
+
+    public WebElement getEditTestClassTax() {
+        wait.until(ExpectedConditions.elementToBeClickable(editTestClassTax));
+        return editTestClassTax;
     }
 }

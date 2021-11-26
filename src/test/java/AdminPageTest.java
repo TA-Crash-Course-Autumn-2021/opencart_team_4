@@ -74,7 +74,14 @@ public class AdminPageTest extends BaseTest {
                 .clickOnLocalisation()
                 .clickOnTaxes()
                 .taxClassClick()
-                .clickOnAddNew().createTestClassTax().taxRateChangesCheck();
-
+                .clickOnAddNew()
+                .createTestClassTax()
+                .taxClassChangesCheck()
+                .clickOnTestEdit()
+                .editTestTax()
+                .editChangesCheck()
+                .taxClassChangesCheck()
+                .deleteTestTax()
+                .taxClassChangesCheck();
     }
 }
