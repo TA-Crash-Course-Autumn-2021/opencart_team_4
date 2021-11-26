@@ -11,4 +11,6 @@ public class AdminDashboardPageBL {
     public String adminDashboardGetTitle() {
        return adminDashboardPage.getAdminDashboardTitle().getText();
     }
+
+    public AdminNavigationBarBL getNavigationBar() { return new AdminNavigationBarBL(); }
 }

@@ -47,45 +47,34 @@ public class AdminPageTest extends BaseTest {
     }
 
     @Test
-    public void adminNewTaxRates() {
+    public void adminAddEditDeleteTaxRates() {
         new Navigation().navigateToUrl(ADMIN_URL.getValue());
         AdminLoginPageBL adminLoginPageBL = new AdminLoginPageBL();
-        adminLoginPageBL.loginAdmin().loginAdminCheck();
-        AdminNavigationBarBL adminNavigationBarBL = new AdminNavigationBarBL();
-        adminNavigationBarBL.categorySystemClick()
+        adminLoginPageBL.loginAdmin().loginAdminCheck()
+                .getNavigationBar()
+                .categorySystemClick()
                 .clickOnLocalisation()
                 .clickOnTaxes()
                 .taxRatesClick()
                 .addNewTaxClass()
                 .newTestTaxRate()
-                .taxRateChangesCheck();
-    }
-
-    @Test
-    public void adminNewTaxRatesEdit() {
-        new Navigation().navigateToUrl(ADMIN_URL.getValue());
-        AdminLoginPageBL adminLoginPageBL = new AdminLoginPageBL();
-        adminLoginPageBL.loginAdmin().loginAdminCheck();
-        AdminNavigationBarBL adminNavigationBarBL = new AdminNavigationBarBL();
-        adminNavigationBarBL.categorySystemClick()
-                .clickOnLocalisation()
-                .clickOnTaxes()
-                .taxRatesClick()
+                .taxRateChangesCheck()
                 .clickOnTaxEdit()
-                .changeTestTaxRate();
-    }
-
-    @Test
-    public void adminNewTaxRatesDelete() {
-        new Navigation().navigateToUrl(ADMIN_URL.getValue());
-        AdminLoginPageBL adminLoginPageBL = new AdminLoginPageBL();
-        adminLoginPageBL.loginAdmin().loginAdminCheck();
-        AdminNavigationBarBL adminNavigationBarBL = new AdminNavigationBarBL();
-        adminNavigationBarBL.categorySystemClick()
-                .clickOnLocalisation()
-                .clickOnTaxes()
-                .taxRatesClick()
+                .changeTestTaxRate()
                 .deleteTestTax()
                 .taxRateChangesCheck();
+    }
+
+    @Test
+    public void adminAddEditDeleteTaxClass() {
+        new Navigation().navigateToUrl(ADMIN_URL.getValue());
+        AdminLoginPageBL adminLoginPageBL = new AdminLoginPageBL();
+        adminLoginPageBL.loginAdmin().loginAdminCheck().getNavigationBar()
+                .categorySystemClick()
+                .clickOnLocalisation()
+                .clickOnTaxes()
+                .taxClassClick()
+                .clickOnAddNew().createTestClassTax().taxRateChangesCheck();
+
     }
 }
