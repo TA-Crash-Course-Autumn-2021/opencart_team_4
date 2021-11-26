@@ -22,10 +22,16 @@ public class TaxEditClassPageBL {
         return this;
     }
 
-    public TaxClassPageBL editTestTax() {
+    public TaxClassPageBL editChangesCheck() {
+        TaxAddClassPageBL taxAddClassPageBL = new TaxAddClassPageBL();
+        taxAddClassPageBL.taxClassChangesCheck();
+        return new TaxClassPageBL();
+    }
+
+    public TaxEditClassPageBL editTestTax() {
         editTaxName("NewTestName");
         editTaxDescription("Edited");
         saveChanges();
-        return new TaxClassPageBL();
+        return this;
     }
 }

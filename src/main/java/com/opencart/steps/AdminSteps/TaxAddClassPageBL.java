@@ -60,9 +60,9 @@ public class TaxAddClassPageBL {
         return new TaxClassPageBL();
     }
 
-    public TaxClassPageBL taxRateChangesCheck() {
-        String expected = "Success: You have modified tax rates!";
-        String actual = taxClassPage.getTaxClassAlert().getText();
+    public TaxClassPageBL taxClassChangesCheck() {
+        String expected = "Success: You have modified tax classes!";
+        String actual = taxClassPage.getTaxClassAlert().getText().trim();
         Assert.assertTrue(actual.contains(expected), "Error: tax rates are not modified");
         return new TaxClassPageBL();
     }
@@ -70,6 +70,7 @@ public class TaxAddClassPageBL {
     public TaxAddClassPageBL createTestClassTax() {
         setTaxClassName("TestClass");
         setTaxClassDescription("TestDescription");
+        addRuleClick();
         setPriority("2");
         selectBasedOnPayment();
         clickOnSaveButton();

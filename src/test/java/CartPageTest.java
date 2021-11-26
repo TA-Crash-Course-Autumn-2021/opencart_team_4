@@ -15,18 +15,12 @@ import static com.opencart.enums.URLs.BASE_URL;
 
 public class CartPageTest extends BaseTest {
 
-    @Test
-    public void cartClickOnProductTest(){
-        new Navigation().navigateToUrl(BASE_URL.getValue());
-        HomePageBL homePage = new HomePageBL();
-    }
 
     @Test
     public void cartProductOperations(){
         new Navigation().navigateToUrl(BASE_URL.getValue());
         DriverRepository.DRIVERS.get().findElement(By.xpath("//h4/a[text()  = 'MacBook']//ancestor::div[@class = 'product-thumb transition']//button//i[@class = 'fa fa-shopping-cart']")).click();
         MainPageBL mainPageBL = new MainPageBL();
-        CartPageBL cartPageBL = new CartPageBL();
         mainPageBL.getHeaderPageBL()
                 .clickOnHeaderUpperCartButton();
     }
