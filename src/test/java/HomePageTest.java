@@ -1,9 +1,9 @@
 import com.opencart.enums.Currencies;
 import com.opencart.navigation.Navigation;
-import com.opencart.pages.HomePage;
 import com.opencart.steps.HomePageBL;
 import com.opencart.steps.MainPageBL;
 import org.testng.annotations.Test;
+import org.testng.reporters.jq.Main;
 
 
 import java.awt.*;
@@ -75,10 +75,77 @@ public class HomePageTest extends BaseTest{
     }
 
     @Test
+    public void fourProductsAddingToCartTest() throws InterruptedException, AWTException {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
+        HomePageBL homePageBL = new HomePageBL();
+        homePageBL.appleAddToCart()
+                  .hardFormTemplate();
+        mainPageBL.getHeaderPageBL().headerClickOnHomeButton();
+        homePageBL.canonAddToCart()
+                  .mediumFormTemplate();
+        mainPageBL.getHeaderPageBL().headerClickOnHomeButton();
+        homePageBL.macbookAddToCart().successProductAddToCartCheck();
+        homePageBL.iphoneAddToCart().successProductAddToCartCheck();
+    }
+
+    @Test
+    public void oneProductAddingToCartUsingSearch() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
+        mainPageBL.getHeaderPageBL().useSearch("iPhone").searchAddToCart("iPhone").successSearchAddToCartCheck();
+    }
+
+    @Test
+    public void twoProductsAddingToCartUsingSearch() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
+        mainPageBL.getHeaderPageBL()
+                .useSearch("macbook")
+                .searchAddToCart("macbook")
+                .successSearchAddToCartCheck()
+                .useSearch("iphone")
+                .searchAddToCart("iphone")
+                .successSearchAddToCartCheck();
+    }
+
+    @Test
+    public void fourProductsAddingToCartUsingSearch() throws InterruptedException, AWTException {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
+        mainPageBL.getHeaderPageBL().useSearch("macbook").searchAddToCart("macbook").successSearchAddToCartCheck()
+                  .useSearch("iPhone")
+                  .searchAddToCart("iPhone")
+                  .successSearchAddToCartCheck()
+                  .useSearch("canon")
+                .searchAddToCart("Canon EOS 5D")
+                .getMediumForm()
+                .mediumFormTemplate();
+        mainPageBL.getHeaderPageBL()
+                .useSearch("cinema")
+                .searchAddToCart("Apple Cinema 30\"")
+                .getHardForm()
+                .hardFormTemplate();
+    }
+
+    @Test
     public void logoutUserAddToWishListNegativeTest() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
         HomePageBL homePageBL = new HomePageBL();
         homePageBL.iphoneAddToWishList().unsuccessfulAddToWishListAlert();
+    }
+
+    @Test void loggedUserAddOneProductsToWishListValidTest() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton()
+                .loginValidUser();
+        mainPageBL.getHeaderPageBL()
+                .headerClickOnHomeButton()
+                .iphoneAddToWishList()
+                .successfulAddToWishListAlert();
     }
 
     @Test void loggedUserAddTwoProductsToWishListValidTest() {

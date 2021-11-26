@@ -31,13 +31,16 @@ public class SearchPage extends BasePage {
     private List<WebElement> searchInCategories;
 
     @FindBy(xpath = "//select[@class = 'form-control']")
-    WebElement searchFormButton;
+    private WebElement searchFormButton;
 
     @FindBy(xpath = "//div[@class = 'product-thumb']")
-    List<WebElement> products;
+    private List<WebElement> products;
 
     @FindBy(xpath = "//p[contains(.,'There ')]")
-    WebElement unsuccessfulSearchingResult;
+    private WebElement unsuccessfulSearchingResult;
+
+    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']//a[contains(.,'cart')]")
+    private WebElement successfulAddToCartAlert;
 
     public List<WebElement> getSearchInCategories() {
         return searchInCategories;
@@ -62,5 +65,20 @@ public class SearchPage extends BasePage {
     public WebElement getUnsuccessfulSearchingResult() {
         wait.until(ExpectedConditions.visibilityOf(unsuccessfulSearchingResult));
         return unsuccessfulSearchingResult;
+    }
+
+    public WebElement getSuccessfulAddToCartAlert() {
+        wait.until(ExpectedConditions.elementToBeClickable(successfulAddToCartAlert));
+        return successfulAddToCartAlert;
+    }
+
+    public WebElement getSearch() {
+        wait.until(ExpectedConditions.elementToBeClickable(search));
+        return search;
+    }
+
+    public WebElement getSearchButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(searchButton));
+        return searchButton;
     }
 }
