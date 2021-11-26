@@ -1,12 +1,13 @@
 package com.opencart.steps;
 
-import com.opencart.driver.DriverRepository;
+
+import com.opencart.pages.Forms.CartHardForm;
+import com.opencart.pages.Forms.CartMediumForm;
 import com.opencart.pages.SearchPage;
 import com.opencart.pages.containers.ProductContainer;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-import java.util.concurrent.TimeUnit;
 
 public class SearchPageBL {
 
@@ -73,4 +74,21 @@ public class SearchPageBL {
         Assert.assertEquals(actual, expected, "Search error");
         return this;
     }
+
+    public SearchPageBL useSearch(String product) {
+        searchPage.getSearch().clear();
+        searchPage.getSearch().sendKeys(product);
+        searchPage.getSearchButton().click();
+        return this;
+    }
+    public SearchPageBL successSearchAddToCartCheck() {
+        String expected = "shopping cart";
+        String actual = searchPage.getSuccessfulAddToCartAlert().getText();
+        Assert.assertTrue(actual.contains(expected), "Error: product didn't added to shopping cart");
+        return this;
+    }
+
+    public CartHardForm getHardForm() { return new CartHardForm(); }
+
+    public CartMediumForm getMediumForm() { return new CartMediumForm(); }
 }

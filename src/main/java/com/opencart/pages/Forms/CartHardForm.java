@@ -124,7 +124,7 @@ public class CartHardForm extends ProductPageBL {
     public CartHardForm hardFormUploadFile() throws InterruptedException, AWTException {
         Robot robot = new Robot();
         productPage.getProductHardFormUploadButton().click();
-        Thread.sleep(2000);
+        Thread.sleep(4000);
         StringSelection path = new StringSelection("C:\\Users\\Sviatoslav\\Desktop\\IT\\Study\\Framework\\OpenCart\\files\\TestFile.txt");
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(path, null);
         robot.keyPress(KeyEvent.VK_CONTROL);
@@ -140,11 +140,27 @@ public class CartHardForm extends ProductPageBL {
 
     public CartHardForm cartHardFormAlertAccept() {
         try {
-            Alert alert = (new WebDriverWait(DriverRepository.DRIVERS.get(), 10).until(ExpectedConditions.alertIsPresent()));
+            Alert alert = (new WebDriverWait(DriverRepository.DRIVERS.get(), 20).until(ExpectedConditions.alertIsPresent()));
             DriverRepository.DRIVERS.get().switchTo().alert().accept();
         } catch (NoAlertPresentException e) {
             System.out.println("Alert is not present");
         }
+        return this;
+    }
+
+    public CartHardForm hardFormTemplate() throws InterruptedException, AWTException {
+                    radioSelectMedium()
+                .checkboxSelectForth()
+                .hardFormSetText("Standard template")
+                .selectYellow()
+                .hardFormSetTextArea("Valid add to cart test")
+                .hardFormSetDate()
+                .hardFormSetHour()
+                .hardFormSetDateAndHour()
+                .hardFormUploadFile()
+                .cartHardFormAlertAccept()
+                .addToCart()
+                .successfulProductAdding();
         return this;
     }
 }

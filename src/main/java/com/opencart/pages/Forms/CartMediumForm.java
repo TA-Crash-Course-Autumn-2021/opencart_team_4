@@ -20,4 +20,12 @@ public class CartMediumForm extends ProductPageBL {
         productPage.getSelectBlue().click();
         return this;
     }
+
+    public CartMediumForm mediumFormTemplate() {
+                productOptionSelectRed();
+                setQuantity(2);
+                addToCart();
+                successfulProductAdding();
+        return this;
+    }
 }
