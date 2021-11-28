@@ -3,6 +3,8 @@ package com.opencart.steps;
 import com.opencart.datamodel.RegisterModel;
 import com.opencart.pages.CheckoutPage;
 import com.opencart.repository.RegisterModelRepository;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class CheckoutPageBL {
 
@@ -47,7 +49,8 @@ public class CheckoutPageBL {
         setCountry();
         setRegion();
         checkoutPage.getStepTwoContinueButton().click();
-        checkoutPage.getCheckoutStep3Open().click();
+        checkoutPage.getStepTwoNewAddress().click();
+        checkoutSetStandardUserVars();
         checkoutPage.getStepThreeContinueButton().click();
         stepFourSelectFlatRate(commentText);
         stepFiveSelectCashOnDelivery(commentText);

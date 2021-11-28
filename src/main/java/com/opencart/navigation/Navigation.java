@@ -2,6 +2,9 @@ package com.opencart.navigation;
 
 import com.opencart.driver.DriverRepository;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.server.handler.ImplicitlyWait;
+
+import java.util.concurrent.TimeUnit;
 
 public class Navigation {
 
@@ -12,7 +15,7 @@ public class Navigation {
     }
 
     public void navigateToUrl(String url) {
-        driver.get(url);
         driver.manage().window().maximize();
+        driver.get(url);
     }
 }

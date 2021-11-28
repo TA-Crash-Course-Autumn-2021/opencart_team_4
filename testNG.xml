@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SeleniumTest" verbose="1">
+    <test name="OpencartTesting">
+        <parameter name="browser" value="chrome" />
+        <classes>
+            <class name="BaseTest" />
+            <class name="SearchPageTest" />
+            <class name="UserRegisterTest" />
+            <class name="LoginTest" />
+            <class name="AdminPageTest" />
+            <class name="HomePageTest" />
+            <class name="UserStories" />
+        </classes>
+    </test>
+</suite>

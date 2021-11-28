@@ -83,6 +83,9 @@ public class CheckoutPage extends BasePage {
     @FindBy(xpath = "//div[@id = 'collapse-payment-method']/..//a")
     private WebElement checkoutStep5Open;
 
+    @FindBy(xpath = "//a[contains(.,'Step 3')]/ancestor::div[@class = 'panel panel-default']//select[@name = 'address_id']")
+    private WebElement stepThreeForm;
+
     public WebElement getCheckoutFirstName() {
         wait.until(ExpectedConditions.elementToBeClickable(checkoutFirstName));
         return checkoutFirstName;
@@ -206,5 +209,10 @@ public class CheckoutPage extends BasePage {
     public WebElement getCheckoutStep5Open() {
         wait.until(ExpectedConditions.elementToBeClickable(checkoutStep5Open));
         return checkoutStep5Open;
+    }
+
+    public WebElement getStepThreeForm() {
+        wait.until(ExpectedConditions.elementToBeClickable(stepThreeForm));
+        return stepThreeForm;
     }
 }

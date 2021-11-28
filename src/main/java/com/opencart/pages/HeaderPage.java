@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 
 public class HeaderPage extends BasePage {
 
-    @FindBy(xpath = ".//*[@title='My Account']")
+    @FindBy(xpath = "//a[@title = 'My Account']")
     private WebElement myAccountButton;
 
     @FindBy(xpath = "//li/a[text() = 'Logout']")
     private WebElement logoutButton;
 
-    @FindBy(xpath = ".//*[contains(@href,'register')]")
+    @FindBy(xpath = "//a[contains(.,'Register')]")
     private WebElement headerRegisterButton;
 
     @FindBy(xpath = "//ul[@class = 'dropdown-menu dropdown-menu-right']//*[contains(@href, 'login')]")
@@ -61,7 +61,7 @@ public class HeaderPage extends BasePage {
     private WebElement currencySymbol;
 
     public WebElement getMyAccountButton() {
-        wait.until(ExpectedConditions.visibilityOf(myAccountButton));
+        wait.until(ExpectedConditions.elementToBeClickable(myAccountButton));
         return myAccountButton;
     }
 
@@ -70,11 +70,11 @@ public class HeaderPage extends BasePage {
     public WebElement getSearchStringSubmit() { return searchStringSubmit; }
 
     public WebElement getHeaderRegisterButton() {
-        wait.until(ExpectedConditions.visibilityOf(headerRegisterButton));
+        wait.until(ExpectedConditions.elementToBeClickable(headerRegisterButton));
         return headerRegisterButton; }
 
     public WebElement getHeaderLoginButton(){
-        wait.until(ExpectedConditions.visibilityOf(headerLoginButton));
+        wait.until(ExpectedConditions.elementToBeClickable(headerLoginButton));
         return headerLoginButton;}
 
     public WebElement getHeaderCart() { return headerCart; }
@@ -101,7 +101,9 @@ public class HeaderPage extends BasePage {
 
     public List<WebElement> getHeaderCartProducts() { return headerCartProducts; }
 
-    public WebElement getLogoutButton() { return logoutButton; }
+    public WebElement getLogoutButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(logoutButton));
+        return logoutButton; }
 
     public List<HeaderPageCartContainer> getProducts() {
         return getHeaderCartProducts().stream().map(HeaderPageCartContainer::new).collect(Collectors.toList());

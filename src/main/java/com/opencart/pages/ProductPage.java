@@ -105,7 +105,7 @@ public class ProductPage extends BasePage{
     public WebElement getAvailability() { return availability; }
 
     public WebElement getQuantity() {
-        wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(quantity));
+        wait.until(ExpectedConditions.elementToBeClickable(quantity));
         return quantity; }
 
     public WebElement getSelectForm() {

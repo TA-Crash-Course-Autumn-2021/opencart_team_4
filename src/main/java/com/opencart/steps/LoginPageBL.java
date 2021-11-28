@@ -74,7 +74,6 @@ public class LoginPageBL {
     }
 
     public MyAccountPageBL successLoginCheck() {
-        DriverRepository.DRIVERS.get().manage().timeouts().pageLoadTimeout(2, TimeUnit.SECONDS);
         String expected = "http://localhost/opencart/upload/index.php?route=account/account";
         String actual = DriverRepository.DRIVERS.get().getCurrentUrl();
         Assert.assertEquals(expected, actual);

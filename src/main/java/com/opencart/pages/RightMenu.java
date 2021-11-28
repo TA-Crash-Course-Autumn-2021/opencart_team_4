@@ -70,7 +70,7 @@ public class RightMenu extends BasePage{
     private WebElement logout;
 
     public WebElement getLogout() {
-        DriverRepository.DRIVERS.get().manage().timeouts().pageLoadTimeout(10000, TimeUnit.MILLISECONDS);
+        wait.until(ExpectedConditions.elementToBeClickable(logout));
         return logout; }
 
     public WebElement getChangePassword() { return changePassword; }
