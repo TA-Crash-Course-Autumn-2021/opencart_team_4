@@ -44,9 +44,22 @@ public class LoginTest extends BaseTest{
                 .successLoginCheck()
                 .myAccountPassChangeClick()
                 .validPasswordChange("6655566")
+                .successLoginCheck();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
+    }
+
+    @Test
+    public void invalidPasswordChanging() {
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton()
+                .loginValidUser()
                 .successLoginCheck()
-                .getRightMenuBL()
-                .clickOnLogoutButton();
+                .myAccountPassChangeClick()
+                .invalidPasswordChange()
+                .passMatchError();
     }
 
     @Test

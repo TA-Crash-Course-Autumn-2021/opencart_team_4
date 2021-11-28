@@ -26,6 +26,7 @@ public class AccountTest extends BaseTest {
                 .clickOnLogoutButton();
     }
 
+
     @Test
     public void changeAccountLastName() {
         MainPageBL mainPageBL = new MainPageBL();
@@ -80,7 +81,6 @@ public class AccountTest extends BaseTest {
                 .clickOnMyAccountButton()
                 .clickOnLoginButton()
                 .loginValidUser()
-                //.loginValidChangedUser()
                 .successLoginCheck()
                 .myAccountEditClick()
                 .setEmail("pupkin@gmail.com")

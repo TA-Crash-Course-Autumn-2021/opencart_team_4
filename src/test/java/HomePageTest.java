@@ -2,10 +2,7 @@ import com.opencart.enums.Currencies;
 import com.opencart.navigation.Navigation;
 import com.opencart.steps.HomePageBL;
 import com.opencart.steps.MainPageBL;
-import org.testng.annotations.Test;
-import org.testng.reporters.jq.Main;
-
-
+import org.testng.annotations.Test; 
 import java.awt.*;
 
 import static com.opencart.enums.URLs.BASE_URL;
@@ -81,19 +78,28 @@ public class HomePageTest extends BaseTest{
         HomePageBL homePageBL = new HomePageBL();
         homePageBL.appleAddToCart()
                   .hardFormTemplate();
-        mainPageBL.getHeaderPageBL().headerClickOnHomeButton();
-        homePageBL.canonAddToCart()
+        mainPageBL.getHeaderPageBL()
+                  .headerClickOnHomeButton()
+                  .canonAddToCart()
                   .mediumFormTemplate();
-        mainPageBL.getHeaderPageBL().headerClickOnHomeButton();
-        homePageBL.macbookAddToCart().successProductAddToCartCheck();
-        homePageBL.iphoneAddToCart().successProductAddToCartCheck();
+        mainPageBL.getHeaderPageBL()
+                  .headerClickOnHomeButton()
+                  .macbookAddToCart()
+                  .successProductAddToCartCheck();
+        mainPageBL.getHeaderPageBL()
+                  .headerClickOnHomeButton()
+                  .iphoneAddToCart()
+                  .successProductAddToCartCheck();
     }
 
     @Test
     public void oneProductAddingToCartUsingSearch() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
         MainPageBL mainPageBL = new MainPageBL();
-        mainPageBL.getHeaderPageBL().useSearch("iPhone").searchAddToCart("iPhone").successSearchAddToCartCheck();
+        mainPageBL.getHeaderPageBL()
+                .useSearch("iPhone")
+                .searchAddToCart("iPhone")
+                .successSearchAddToCartCheck();
     }
 
     @Test
@@ -113,11 +119,14 @@ public class HomePageTest extends BaseTest{
     public void fourProductsAddingToCartUsingSearch() throws InterruptedException, AWTException {
         new Navigation().navigateToUrl(BASE_URL.getValue());
         MainPageBL mainPageBL = new MainPageBL();
-        mainPageBL.getHeaderPageBL().useSearch("macbook").searchAddToCart("macbook").successSearchAddToCartCheck()
-                  .useSearch("iPhone")
-                  .searchAddToCart("iPhone")
-                  .successSearchAddToCartCheck()
-                  .useSearch("canon")
+        mainPageBL.getHeaderPageBL()
+                .useSearch("macbook")
+                .searchAddToCart("macbook")
+                .successSearchAddToCartCheck()
+                .useSearch("iPhone")
+                .searchAddToCart("iPhone")
+                .successSearchAddToCartCheck()
+                .useSearch("canon")
                 .searchAddToCart("Canon EOS 5D")
                 .getMediumForm()
                 .mediumFormTemplate();
@@ -141,11 +150,13 @@ public class HomePageTest extends BaseTest{
         mainPageBL.getHeaderPageBL()
                 .clickOnMyAccountButton()
                 .clickOnLoginButton()
-                .loginValidUser();
+                .loginValidUser()
+                .successLoginCheck();
         mainPageBL.getHeaderPageBL()
                 .headerClickOnHomeButton()
                 .iphoneAddToWishList()
                 .successfulAddToWishListAlert();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
     }
 
     @Test void loggedUserAddTwoProductsToWishListValidTest() {
@@ -154,13 +165,17 @@ public class HomePageTest extends BaseTest{
         mainPageBL.getHeaderPageBL()
                 .clickOnMyAccountButton()
                 .clickOnLoginButton()
-                .loginValidUser();
+                .loginValidUser()
+                .successLoginCheck();
         mainPageBL.getHeaderPageBL()
                 .headerClickOnHomeButton()
                 .iphoneAddToWishList()
-                .successfulAddToWishListAlert()
+                .successfulAddToWishListAlert();
+        mainPageBL.getHeaderPageBL()
+                .headerClickOnHomeButton()
                 .macbookAddToWishList()
                 .successfulAddToWishListAlert();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
     }
 
     @Test
@@ -170,13 +185,27 @@ public class HomePageTest extends BaseTest{
         mainPageBL.getHeaderPageBL()
                 .clickOnMyAccountButton()
                 .clickOnLoginButton()
-                .loginValidUser();
+                .loginValidUser()
+                .successLoginCheck();
         mainPageBL.getHeaderPageBL()
                 .headerClickOnHomeButton()
-                .iphoneAddToWishList().successfulAddToWishListAlert()
-                .macbookAddToWishList().successfulAddToWishListAlert()
-                .canonAddToWishList().successfulAddToWishListAlert()
-                .appleAddToWishList().successfulAddToWishListAlert();
+                .iphoneAddToWishList()
+                .successfulAddToWishListAlert();
+        mainPageBL.getHeaderPageBL()
+                .headerClickOnHomeButton()
+                .macbookAddToWishList()
+                .successfulAddToWishListAlert();
+        mainPageBL.getHeaderPageBL()
+                .headerClickOnHomeButton()
+                .canonAddToWishList()
+                .successfulAddToWishListAlert();
+        mainPageBL.getHeaderPageBL()
+                .headerClickOnHomeButton()
+                .appleAddToWishList()
+                .successfulAddToWishListAlert();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLogoutButton();
     }
 
     @Test
@@ -190,27 +219,53 @@ public class HomePageTest extends BaseTest{
     @Test
     public void loginUserOneProductAddToCompare() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
         HomePageBL homePageBL = new HomePageBL();
-        homePageBL
-                .appleAddToCompare()
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton()
+                .loginValidUser()
+                .successLoginCheck();
+        mainPageBL.getHeaderPageBL()
+                .headerClickOnHomeButton();
+        homePageBL.appleAddToCompare()
                 .successfulAddToCompareAlert();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLogoutButton();
     }
 
     @Test
     public void loginUserTwoProductAddToCompare() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
+        MainPageBL mainPageBL = new MainPageBL();
         HomePageBL homePageBL = new HomePageBL();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton()
+                .loginValidUser()
+                .successLoginCheck();
+        mainPageBL.getHeaderPageBL()
+                .headerClickOnHomeButton();
         homePageBL
                 .appleAddToCompare()
                 .successfulAddToCompareAlert()
                 .macbookAddToCompare()
                 .successfulAddToCompareAlert();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
     }
 
     @Test
     public void loginUserSixProductsAddToCompare() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
         MainPageBL mainPageBL = new MainPageBL();
+        mainPageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton()
+                .loginValidUser()
+                .successLoginCheck();
+        mainPageBL.getHeaderPageBL()
+                .headerClickOnHomeButton();
         mainPageBL.getHeaderPageBL()
                 .useSearch("Samsung SyncMaster 941BW")
                 .searchClickOnProduct("Samsung SyncMaster 941BW")
@@ -229,5 +284,6 @@ public class HomePageTest extends BaseTest{
                 .iphoneAddToCompare().successfulAddToCompareAlert()
                 .canonAddToCompare().successfulAddToCompareAlert()
                 .macbookAddToCompare().successfulAddToCompareAlert();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
     }
 }

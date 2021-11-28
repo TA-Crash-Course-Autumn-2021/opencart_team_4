@@ -1,12 +1,21 @@
 import com.opencart.datamodel.RegisterModel;
 import com.opencart.navigation.Navigation;
 import com.opencart.repository.RegisterModelRepository;
+import com.opencart.steps.HomePageBL;
 import com.opencart.steps.MainPageBL;
 import org.testng.annotations.Test;
 
 import static com.opencart.enums.URLs.BASE_URL;
 
 public class UserStories extends BaseTest {
+
+    @Test
+    public void addToCompareAndAddToWishlist(){
+        HomePageBL homePageBL = new HomePageBL();
+        new Navigation().navigateToUrl(BASE_URL.getValue());
+        homePageBL.macbookAddToCompare().successfulAddToCompareAlert()
+                  .iphoneAddToWishList().successfulAddToWishListAlert();
+    }
 
     @Test
     public void loggedUserOneProductOrder() {

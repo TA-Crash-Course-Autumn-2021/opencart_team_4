@@ -21,7 +21,7 @@ public class UserRegisterTest extends BaseTest {
         registerPageBL.passwordNotMatchCheck();
     }
 
-     @Test
+    @Test
     public void registerUserWithValidParameters() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
         MainPageBL mainPageBL = new MainPageBL();

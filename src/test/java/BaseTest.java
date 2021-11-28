@@ -11,6 +11,7 @@ public class BaseTest {
     @BeforeClass
     public void createDriver() { DriverRepository.instanceWebBrowser();}
 
+
     @AfterSuite
     public void closeBrowser() {
       DriverRepository.closeBrowser();

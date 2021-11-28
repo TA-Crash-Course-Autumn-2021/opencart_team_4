@@ -2,6 +2,7 @@ package com.opencart.steps;
 
 import com.opencart.pages.HeaderPage;
 import com.opencart.pages.containers.HeaderPageCartContainer;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -84,7 +85,9 @@ public class HeaderPageBL {
     }
 
     public LogoutPageBL clickOnLogoutButton() {
-        headerPage.getLogoutButton().click();
+        try{
+        headerPage.getLogoutButton().click(); }catch(ElementClickInterceptedException e){
+            headerPage.getLogoutButton().click(); }
         return new LogoutPageBL();
     }
 }

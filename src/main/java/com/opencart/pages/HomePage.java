@@ -2,6 +2,7 @@ package com.opencart.pages;
 
 import com.opencart.driver.DriverRepository;
 import com.opencart.pages.containers.ProductContainer;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class HomePage extends BasePage{
 
-    ////div[@class = 'product-thumb transition']
+
     @FindBy(xpath = "//div[contains(@class, 'product-thumb')]")
     private List<WebElement> products;
 
@@ -164,7 +165,7 @@ public class HomePage extends BasePage{
     }
 
     public WebElement getSuccessfulAddToWishListAlert() {
-        new WebDriverWait(DriverRepository.DRIVERS.get(), 10).until(ExpectedConditions.elementToBeClickable(successfulAddToWishListAlert));
+        wait.until(ExpectedConditions.elementToBeClickable(successfulAddToWishListAlert));
         return successfulAddToWishListAlert;
     }
 

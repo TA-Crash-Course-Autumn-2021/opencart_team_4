@@ -124,7 +124,7 @@ public class CartHardForm extends ProductPageBL {
     public CartHardForm hardFormUploadFile() throws InterruptedException, AWTException {
         Robot robot = new Robot();
         productPage.getProductHardFormUploadButton().click();
-        Thread.sleep(4000);
+        Thread.sleep(6000);
         StringSelection path = new StringSelection("C:\\Users\\Sviatoslav\\Desktop\\IT\\Study\\Framework\\OpenCart\\files\\TestFile.txt");
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(path, null);
         robot.keyPress(KeyEvent.VK_CONTROL);
