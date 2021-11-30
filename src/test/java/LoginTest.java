@@ -60,6 +60,7 @@ public class LoginTest extends BaseTest{
                 .myAccountPassChangeClick()
                 .invalidPasswordChange()
                 .passMatchError();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
     }
 
     @Test
@@ -73,8 +74,7 @@ public class LoginTest extends BaseTest{
                 .successLoginCheck()
                 .myAccountPassChangeClick()
                 .validPasswordChange("6655566")
-                .successLoginCheck()
-                .getRightMenuBL()
-                .clickOnLogoutButton();
+                .successLoginCheck();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
     }
 }

@@ -21,7 +21,7 @@ public class HeaderPage extends BasePage {
     @FindBy(xpath = "//a[contains(.,'Register')]")
     private WebElement headerRegisterButton;
 
-    @FindBy(xpath = "//ul[@class = 'dropdown-menu dropdown-menu-right']//*[contains(@href, 'login')]")
+    @FindBy(xpath = "//ul//a[contains(text(),  'Login')]")
     private WebElement headerLoginButton;
 
     @FindBy(xpath = "//input[@class = 'form-control input-lg']")

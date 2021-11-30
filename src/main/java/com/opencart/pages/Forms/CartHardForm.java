@@ -65,25 +65,25 @@ public class CartHardForm extends ProductPageBL {
     }
 
     public CartHardForm selectRed() {
-        productPage.getSelectForm().click();
+        productPage.getSelectHardForm().click();
         productPage.getSelectRed().click();
         return this;
     }
 
     public CartHardForm selectBlue() {
-        productPage.getSelectForm().click();
+        productPage.getSelectHardForm().click();
         productPage.getSelectBlue().click();
         return this;
     }
 
     public CartHardForm selectGreen() {
-        productPage.getSelectForm().click();
+        productPage.getSelectHardForm().click();
         productPage.getSelectGreen().click();
         return this;
     }
 
     public CartHardForm selectYellow() {
-        productPage.getSelectForm().click();
+        productPage.getSelectHardForm().click();
         productPage.getSelectYellow().click();
         return this;
     }

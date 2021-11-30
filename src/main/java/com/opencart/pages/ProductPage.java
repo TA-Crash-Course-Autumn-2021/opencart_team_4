@@ -30,8 +30,11 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//input[@name = 'quantity']")
     private WebElement quantity;
 
-    @FindBy(xpath = "//select['input-option226']")
+    @FindBy(xpath = "//select[@id = 'input-option226']")
     private WebElement selectForm;
+
+    @FindBy(xpath = "//select[@id = 'input-option217']")
+    private WebElement selectHardForm;
 
     @FindBy(xpath = "//option[contains(.,'Red')]")
     private WebElement selectRed;
@@ -69,7 +72,7 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//input[@value = '11']")
     private WebElement checkBoxSelectForth;
 
-    @FindBy(xpath = "//input[@id = 'input-option208']")
+    @FindBy(id = "input-option208")
     private WebElement productHardFormText;
 
     @FindBy(xpath = "//div[@class = 'text-danger']")
@@ -78,13 +81,13 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//textarea[@id = 'input-option209']")
     private WebElement productHardFormTextArea;
 
-    @FindBy(xpath = "//input[@id = 'input-option219']")
+    @FindBy(xpath = "//input[@name = 'option[219]']")
     private WebElement productHardFormDate;
 
-    @FindBy(xpath = "//input[@id = 'input-option221']")
+    @FindBy(xpath = "//input[@name = 'option[221]']")
     private WebElement productHardFormHour;
 
-    @FindBy(xpath = "//input[@id = 'input-option220']")
+    @FindBy(xpath = "//input[@name = 'option[220]']")
     private WebElement productHardFormDateAndHour;
 
     @FindBy(xpath = "//button[@id = 'button-upload222']")
@@ -206,5 +209,10 @@ public class ProductPage extends BasePage{
     public WebElement getProductHardFormUploadButton() {
         wait.until(ExpectedConditions.elementToBeClickable(productHardFormUploadButton));
         return productHardFormUploadButton;
+    }
+
+    public WebElement getSelectHardForm() {
+        wait.until(ExpectedConditions.elementToBeClickable(selectHardForm));
+        return selectHardForm;
     }
 }

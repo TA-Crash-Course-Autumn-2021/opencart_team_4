@@ -4,6 +4,7 @@ import com.opencart.datamodel.RegisterModel;
 import com.opencart.driver.DriverRepository;
 import com.opencart.pages.LoginPage;
 import com.opencart.repository.RegisterModelRepository;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import java.util.concurrent.TimeUnit;
@@ -82,8 +83,8 @@ public class LoginPageBL {
 
     public LoginPageBL unsuccessLoginCheck() {
         String expected = "Warning: No match for E-Mail Address and/or Password.";
-        String actual = loginPage.getUnsuccessfulLoginAlert().getText();
-        Assert.assertEquals(expected, actual);
+        String actual = loginPage.getUnsuccessfulLoginAlert().getText().trim();
+        Assert.assertTrue(actual.contains(expected));
         return this;
     }
 
