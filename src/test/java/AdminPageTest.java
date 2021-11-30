@@ -84,4 +84,22 @@ public class AdminPageTest extends BaseTest {
                 .deleteTestTax()
                 .taxClassChangesCheck();
     }
+
+    @Test
+    public void adminAddEditDeleteManufacturer() {
+        new Navigation().navigateToUrl(ADMIN_URL.getValue());
+        AdminLoginPageBL adminLoginPageBL = new AdminLoginPageBL();
+        adminLoginPageBL.loginAdmin().loginAdminCheck().getNavigationBar()
+                .categoryCatalogClick()
+                .clickOnManufacturers()
+                .addNewManufacturer()
+                .newTestManufacturer()
+                .manufacturerChangesCheck()
+                .editManufacturer()
+                .editTestManufacturer()
+                .manufacturerChangesCheck()
+                .deleteManufacture()
+                .manufacturerChangesCheck();
+    }
+
 }
