@@ -27,6 +27,12 @@ public class AdminNavigationBar extends BasePage {
     @FindBy(xpath = "//ul[@id = 'collapse-7-2-9']//a[text() = 'Tax Rates']")
     private WebElement taxRates;
 
+    @FindBy(xpath = "//li[@id = 'menu-catalog']")
+    private WebElement menuCatalog;
+
+    @FindBy(xpath = "//*[contains(text(),'Manufacturers')]")
+    private WebElement manufacturersCategory;
+
     public WebElement getMenuSystem() {
         wait.until(ExpectedConditions.visibilityOfAllElements(menuSystem));
         return menuSystem;
@@ -55,5 +61,15 @@ public class AdminNavigationBar extends BasePage {
     public WebElement getTaxRates() {
         wait.until(ExpectedConditions.elementToBeClickable(taxRates));
         return taxRates;
+    }
+
+    public WebElement getMenuCatalog() {
+        wait.until(ExpectedConditions.elementToBeClickable(menuCatalog));
+        return menuCatalog;
+    }
+
+    public WebElement getManufacturersCategory() {
+        wait.until(ExpectedConditions.elementToBeClickable(manufacturersCategory));
+        return manufacturersCategory;
     }
 }
