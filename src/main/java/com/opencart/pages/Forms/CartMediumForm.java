@@ -1,7 +1,9 @@
 package com.opencart.pages.Forms;
 
+import com.opencart.enums.ProductForms.MediumSelectForm;
 import com.opencart.pages.ProductPage;
 import com.opencart.steps.ProductPageBL;
+import org.openqa.selenium.support.ui.Select;
 
 public class CartMediumForm extends ProductPageBL {
 
@@ -9,20 +11,13 @@ public class CartMediumForm extends ProductPageBL {
 
     public CartMediumForm() { productPage = new ProductPage(); }
 
-    public CartMediumForm productOptionSelectRed() {
-        productPage.getSelectForm().click();
-        productPage.getSelectRed().click();
-        return this;
-    }
-
-    public CartMediumForm productOptionSelectBlue() {
-        productPage.getSelectForm().click();
-        productPage.getSelectBlue().click();
-        return this;
+    public void selectForm(String value) {
+        Select select = new Select(productPage.getSelectForm());
+        select.selectByValue(value);
     }
 
     public CartMediumForm mediumFormTemplate() {
-                productOptionSelectRed();
+                selectForm(MediumSelectForm.BLUE.getValue());
                 setQuantity(2);
                 addToCart();
                 successfulProductAdding();

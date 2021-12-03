@@ -1,5 +1,6 @@
 package com.opencart.steps.AdminSteps;
 
+import com.opencart.enums.Currencies;
 import com.opencart.pages.AdminPages.AdminNewCurrencyPage;
 
 public class AdminNewCurrencyBL {
@@ -63,7 +64,7 @@ public class AdminNewCurrencyBL {
 
     public AdminNewCurrencyBL createHryvniaCurrency() {
         currencySetTitle("Ukraine Hryvnia");
-        currencySetCode("UAH");
+        currencySetCode(Currencies.HRYVNIA.getCurrency());
         currencySetSymbolLeft("₴");
         currencySetSymbolRight("");
         currencySetDecimalPlaces("2");

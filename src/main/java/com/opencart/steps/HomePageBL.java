@@ -1,15 +1,13 @@
 package com.opencart.steps;
 
-import com.opencart.driver.DriverRepository;
 import com.opencart.pages.Forms.CartHardForm;
 import com.opencart.pages.Forms.CartMediumForm;
 import com.opencart.pages.HomePage;
-import com.opencart.pages.containers.ProductContainer;
-import com.opencart.util.DriverUtils;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomePageBL {
@@ -18,33 +16,33 @@ public class HomePageBL {
 
    public HomePageBL(){ homePage = new HomePage();}
 
-   public HomePageBL productAddToCart(WebElement chooseProduct) {
-       chooseProduct.findElement(By.xpath("//div[@id = 'content']//*[contains(@class, 'shopping-cart')]/..")).click();
-       return this;
-   }
+    private static List<Integer> prices = new ArrayList<>();
 
-   public HomePageBL clickOnProduct(WebElement choosenProduct) {
-       choosenProduct.findElement(By.xpath("./h4/a")).click();
-       return this;
-   }
+    public static List<Integer> getPrices() { return prices; }
+
+    public HeaderPageBL getHeaderPageBL() { return new HeaderPageBL(); }
 
    public HomePageBL macbookAddToCart() {
        homePage.getMacbookAddToCart().click();
+       successProductAddToCartCheck();
        return this;
    }
 
    public HomePageBL macbookAddToCompare() {
        homePage.getMacbookAddToCompare().click();
+       successfulAddToCompareAlert();
        return this;
    }
 
    public HomePageBL macbookAddToWishList() {
        homePage.getMacbookAddToWishList().click();
+       successfulAddToWishListAlert();
        return this;
    }
 
    public HomePageBL iphoneAddToCart() {
        homePage.getIphoneAddToCart().click();
+       successProductAddToCartCheck();
        return this;
    }
 
@@ -55,26 +53,33 @@ public class HomePageBL {
 
    public HomePageBL iphoneAddToWishList() {
        homePage.getIphoneAddToWishList().click();
+       successfulAddToWishListAlert();
        return this;
    }
 
-   public CartHardForm appleAddToCart() {
+   public CartHardForm appleAddToCart() throws InterruptedException, AWTException {
        homePage.getAppleCinemaAddToCart().click();
+       CartHardForm cartHardForm = new CartHardForm();
+       cartHardForm.hardFormTemplate();
        return new CartHardForm();
    }
 
    public HomePageBL appleAddToCompare() {
        homePage.getAppleCinemaAddToCompare().click();
+       successfulAddToCompareAlert();
        return this;
    }
 
    public HomePageBL appleAddToWishList() {
        homePage.getAppleCinemaAddToWishList().click();
+       successfulAddToWishListAlert();
        return this;
    }
 
    public CartMediumForm canonAddToCart() {
        homePage.getCanonEOSAddToCart().click();
+       CartMediumForm mediumForm = new CartMediumForm();
+       mediumForm.mediumFormTemplate();
        return new CartMediumForm();
    }
 
@@ -85,13 +90,15 @@ public class HomePageBL {
 
    public HomePageBL canonAddToWishList() {
        homePage.getCanonEOSAddToWishList().click();
+       successfulAddToWishListAlert();
        return this;
    }
 
    public HomePageBL successProductAddToCartCheck() {
-       String expected = "shopping cart";
-       String actual = homePage.getSuccessfulAddToCartAlert().getText();
-       Assert.assertTrue(actual.contains(expected), "Error: product not added to cart");
+       String expected = "shopping cart".trim().toLowerCase();
+       String success = "Success: You have added".trim().toLowerCase();
+       String actual = homePage.getSuccessfulAlert().getText().trim().toLowerCase();
+       Assert.assertTrue(actual.contains(expected) & actual.contains(success), "Error: product not added to cart");
        return this;
    }
 
@@ -104,15 +111,17 @@ public class HomePageBL {
 
    public HomePageBL successfulAddToWishListAlert() {
        String expected = "wish list";
-       String actual = homePage.getSuccessfulAddToWishListAlert().getText();
-       Assert.assertTrue(actual.contains(expected), "Error: logged user can't add product to \"Wish List\"");
+       String actual = homePage.getSuccessfulAlert().getText();
+       Assert.assertTrue(actual.contains(expected), "Error: logout user can't add product to \"Wish List\"");
        return this;
    }
 
     public HomePageBL successfulAddToCompareAlert() {
-        String expected = "product comparison";
-        String actual = homePage.getSuccessfulAddToCompareAlert().getText();
-        Assert.assertTrue(actual.contains(expected));
+               String actual = homePage.getSuccessfulAlert().getText();
+               String expected = "product comparison";
+               Assert.assertTrue(actual.contains(expected));
         return this;
     }
+
+    public static void setPrices(List<Integer> prices) { HomePageBL.prices = prices; }
 }

@@ -8,6 +8,8 @@ import com.opencart.pages.containers.ProductContainer;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import java.util.Locale;
+
 
 public class SearchPageBL {
 
@@ -39,14 +41,18 @@ public class SearchPageBL {
     }
 
     public SearchPageBL searchAddToCompare(String productName){
+        useSearch(productName);
         ProductContainer product = searchPage.getProducts().stream().filter(e -> e.productGetName().equalsIgnoreCase(productName)).findFirst().orElseThrow(NullPointerException::new);
         product.productAddToCompare().click();
+        successfulAddToCompare(productName);
         return this;
     }
 
     public SearchPageBL searchAddToCart(String productName){
+        useSearch(productName);
         ProductContainer product = searchPage.getProducts().stream().filter(e -> e.productGetName().equalsIgnoreCase(productName)).findFirst().orElseThrow(NullPointerException::new);
         product.productAddToCart().click();
+        successSearchAddToCartCheck();
         return this;
     }
 
@@ -68,6 +74,15 @@ public class SearchPageBL {
         return this;
     }
 
+    public SearchPageBL successfulAddToCompare(String product) {
+        String actual = searchPage.getSuccessfulAddToCompare().getText().trim().toLowerCase();
+        String success = "Success: You have added".toLowerCase();
+        String productName = product.trim().toLowerCase();
+        String compare = "product comparison".trim().toLowerCase();
+        Assert.assertTrue(actual.contains(success) & actual.contains(productName) & actual.contains(compare));
+        return this;
+    }
+
     public SearchPageBL unsuccessfulSearchResult() {
         String expected = "There is no product that matches the search criteria.";
         String actual = searchPage.getUnsuccessfulSearchingResult().getText();
@@ -81,10 +96,13 @@ public class SearchPageBL {
         searchPage.getSearchButton().click();
         return this;
     }
+
+
     public SearchPageBL successSearchAddToCartCheck() {
-        String expected = "shopping cart";
-        String actual = searchPage.getSuccessfulAddToCartAlert().getText();
-        Assert.assertTrue(actual.contains(expected), "Error: product didn't added to shopping cart");
+        String success = "Success: You have added".toLowerCase();
+        String expected = "shopping cart".toLowerCase();
+        String actual = searchPage.getSuccessfulAddToCartAlert().getText().trim().toLowerCase();
+        Assert.assertTrue(actual.contains(expected) & actual.contains(success), "Error: product didn't added to shopping cart");
         return this;
     }
 

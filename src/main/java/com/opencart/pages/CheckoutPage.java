@@ -5,8 +5,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.List;
+
 
 public class CheckoutPage extends BasePage {
+
+    @FindBy(xpath = "//div[@class = 'pull-right']//a[contains(.,'Checkout')]")
+    private WebElement checkoutButton;
 
     @FindBy(xpath = "//input[@id = 'input-payment-firstname']")
     private WebElement checkoutFirstName;
@@ -74,10 +79,16 @@ public class CheckoutPage extends BasePage {
     @FindBy(xpath = "//input[@id = 'button-confirm']")
     private WebElement stepSixOrderConfirmButton;
 
-    @FindBy(xpath = "//input[@value = 'new']")
+    @FindBy(xpath = "//a[contains(.,'Billi')]/ancestor::div[@class = 'panel panel-default']//input[@value = 'new']")
     private WebElement stepTwoNewAddress;
 
-    @FindBy(xpath = "//input[@value = 'existing']")
+    @FindBy(xpath = "//a[contains(.,'Deliv')]/ancestor::div[@class = 'panel panel-default']//input[@value = 'existing']")
+    private WebElement stepThreeExistingAddress;
+
+    @FindBy(xpath = "//a[contains(.,'Deliv')]/ancestor::div[@class = 'panel panel-default']//input[@value = 'new']")
+    private WebElement stepThreeNewAddress;
+
+    @FindBy(xpath = "//a[contains(.,'Billi')]/ancestor::div[@class = 'panel panel-default']//input[@value = 'existing']")
     private WebElement stepTwoExistingAddress;
 
     @FindBy(xpath = "//div[@id = 'collapse-payment-method']/..//a")
@@ -85,6 +96,12 @@ public class CheckoutPage extends BasePage {
 
     @FindBy(xpath = "//a[contains(.,'Step 3')]/ancestor::div[@class = 'panel panel-default']//select[@name = 'address_id']")
     private WebElement stepThreeForm;
+
+    @FindBy(xpath = "//a[contains(.,'Billi')]")
+    private WebElement stepTwoOpen;
+
+    @FindBy(xpath = "//div[@id = 'payment-existing']/select/option")
+    private List<WebElement> stepTwoOptions;
 
     public WebElement getCheckoutFirstName() {
         wait.until(ExpectedConditions.elementToBeClickable(checkoutFirstName));
@@ -140,6 +157,8 @@ public class CheckoutPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(selectRegionLviv));
         return selectRegionLviv;
     }
+
+
 
     public WebElement getStepTwoContinueButton() {
         wait.until(ExpectedConditions.elementToBeClickable(stepTwoContinueButton));
@@ -214,5 +233,29 @@ public class CheckoutPage extends BasePage {
     public WebElement getStepThreeForm() {
         wait.until(ExpectedConditions.elementToBeClickable(stepThreeForm));
         return stepThreeForm;
+    }
+
+    public WebElement getCheckoutButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(checkoutButton));
+        return checkoutButton;
+    }
+
+    public WebElement getStepTwoOpen() {
+        wait.until(ExpectedConditions.elementToBeClickable(stepTwoOpen));
+        return stepTwoOpen;
+    }
+
+    public List<WebElement> getStepTwoOptions() {
+        return stepTwoOptions;
+    }
+
+    public WebElement getStepThreeExistingAddress() {
+        wait.until(ExpectedConditions.elementToBeClickable(stepThreeExistingAddress));
+        return stepThreeExistingAddress;
+    }
+
+    public WebElement getStepThreeNewAddress() {
+        wait.until(ExpectedConditions.elementToBeClickable(stepThreeNewAddress));
+        return stepThreeNewAddress;
     }
 }

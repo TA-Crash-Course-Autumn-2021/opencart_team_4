@@ -2,7 +2,6 @@ package com.opencart.steps.AdminSteps;
 
 
 import com.opencart.pages.AdminPages.AdminNavigationBar;
-import com.opencart.steps.AdminSteps.Categories.CatalogCategories;
 import com.opencart.steps.AdminSteps.Categories.SystemCategories;
 
 
@@ -15,10 +14,5 @@ public class AdminNavigationBarBL {
     public SystemCategories categorySystemClick() {
         adminNavigationBar.getMenuSystem().click();
         return new SystemCategories();
-    }
-
-    public CatalogCategories categoryCatalogClick() {
-        adminNavigationBar.getMenuCatalog().click();
-        return new CatalogCategories();
     }
 }

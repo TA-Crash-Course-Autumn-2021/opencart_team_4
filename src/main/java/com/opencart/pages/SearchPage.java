@@ -39,8 +39,11 @@ public class SearchPage extends BasePage {
     @FindBy(xpath = "//p[contains(.,'There ')]")
     private WebElement unsuccessfulSearchingResult;
 
-    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']//a[contains(.,'cart')]")
+    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']")
     private WebElement successfulAddToCartAlert;
+
+    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']")
+    private WebElement successfulAddToCompare;
 
     public List<WebElement> getSearchInCategories() {
         return searchInCategories;
@@ -80,5 +83,10 @@ public class SearchPage extends BasePage {
     public WebElement getSearchButton() {
         wait.until(ExpectedConditions.elementToBeClickable(searchButton));
         return searchButton;
+    }
+
+    public WebElement getSuccessfulAddToCompare() {
+        wait.until(ExpectedConditions.visibilityOf(successfulAddToCompare));
+        return successfulAddToCompare;
     }
 }
