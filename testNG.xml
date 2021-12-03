@@ -3,14 +3,17 @@
 <suite name="SeleniumTest" verbose="1">
     <test name="OpencartTesting">
         <parameter name="browser" value="chrome" />
-        <classes>
-            <class name="BaseTest" />
-            <class name="SearchPageTest" />
-            <class name="UserRegisterTest" />
-            <class name="LoginTest" />
-            <class name="AdminPageTest" />
-            <class name="HomePageTest" />
-            <class name="UserStories" />
-        </classes>
+        <packages>
+            <package name="AccountChangingTests"/>
+            <package name="AddToCartTests" />
+            <package name="AddToCompareTests"/>
+            <package name="AddToWishListTests"/>
+            <package name="AdminPageTests"/>
+            <package name="CurrencyChangingTest"/>
+            <package name="LoginTests"/>
+            <package name="SearchPageTest"/>
+            <package name="UserRegisterTests"/>
+            <package name="UserStories"/>
+        </packages>
     </test>
 </suite>
