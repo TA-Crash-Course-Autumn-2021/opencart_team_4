@@ -1,16 +1,19 @@
 import com.opencart.driver.DriverRepository;
 import org.testng.annotations.*;
 
-import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
     @BeforeSuite
     public void setup() { DriverRepository.downloadWebDriver();}
 
-    @BeforeClass
+    @BeforeMethod
     public void createDriver() { DriverRepository.instanceWebBrowser();}
 
+    @AfterMethod
+    public void close() {
+        DriverRepository.closeBrowser();
+    }
 
     @AfterSuite
     public void closeBrowser() {
