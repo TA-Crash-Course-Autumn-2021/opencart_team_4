@@ -21,9 +21,8 @@ public class AccountTest extends BaseTest {
                 .myAccountEditClick()
                 .setFirstName("Petro")
                 .editAccountPageContinueButtonClick()
-                .confirmAccountChanging()
-                .getRightMenuBL()
-                .clickOnLogoutButton();
+                .confirmAccountChanging();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
     }
 
 
@@ -31,7 +30,6 @@ public class AccountTest extends BaseTest {
     public void changeAccountLastName() {
         MainPageBL mainPageBL = new MainPageBL();
         new Navigation().navigateToUrl(BASE_URL.getValue());
-        DriverRepository.DRIVERS.get().manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
         mainPageBL.getHeaderPageBL()
                 .clickOnMyAccountButton()
                 .clickOnLoginButton()
@@ -41,6 +39,7 @@ public class AccountTest extends BaseTest {
                 .setLastName("Schur")
                 .editAccountPageContinueButtonClick()
                 .confirmAccountChanging();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
     }
 
     @Test
@@ -56,6 +55,7 @@ public class AccountTest extends BaseTest {
                 .setTelephone("+380974554572")
                 .editAccountPageContinueButtonClick()
                 .confirmAccountChanging();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
     }
 
     @Test
@@ -71,6 +71,7 @@ public class AccountTest extends BaseTest {
                 .setEmail("pupkin@gmail.com")
                 .editAccountPageContinueButtonClick()
                 .confirmAccountChanging();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
     }
 
     @Test
@@ -89,5 +90,6 @@ public class AccountTest extends BaseTest {
                 .setTelephone("+38045731558")
                 .editAccountPageContinueButtonClick()
                 .confirmAccountChanging();
+        mainPageBL.getHeaderPageBL().clickOnMyAccountButton().clickOnLogoutButton();
     }
 }

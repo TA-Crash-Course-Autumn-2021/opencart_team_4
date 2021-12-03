@@ -85,9 +85,7 @@ public class HeaderPageBL {
     }
 
     public LogoutPageBL clickOnLogoutButton() {
-        try{
-        headerPage.getLogoutButton().click(); }catch(ElementClickInterceptedException e){
-            headerPage.getLogoutButton().click(); }
+        headerPage.getLogoutButton().click();
         return new LogoutPageBL();
     }
 }

@@ -46,8 +46,7 @@ public class RightMenuBL {
     }
 
     public HomePageBL clickOnLogoutButton() {
-        Actions actions = new Actions(DriverRepository.DRIVERS.get());
-        actions.moveToElement(rightMenu.getLogout()).click().perform();
-        return new HomePageBL();
+    rightMenu.getLogout().click();
+    return new HomePageBL();
     }
 }
