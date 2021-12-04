@@ -6,7 +6,9 @@ import com.opencart.pages.ProductPage;
 import com.opencart.steps.ProductPageBL;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -23,6 +25,15 @@ public class CartHardForm extends ProductPageBL {
 
     public CartHardForm() { productPage = new ProductPage(); }
 
+    public CartHardForm radioForm(String value) {
+        for(WebElement radioValue : productPage.getRadioValues()){
+            if(radioValue.getAttribute("value").contains(value)){
+                radioValue.click();
+            }
+        }
+        return this;
+    }
+
     public CartHardForm radioSelectSmall() {
         productPage.getRadioSmall().click();
         return this;
@@ -35,6 +46,12 @@ public class CartHardForm extends ProductPageBL {
 
     public CartHardForm radioSelectLarge() {
         productPage.getRadioLarge().click();
+        return this;
+    }
+
+    public CartHardForm selectForm(String value) {
+        Select option = new Select(productPage.getSelectOptions());
+        option.selectByValue(value);
         return this;
     }
 
@@ -61,30 +78,6 @@ public class CartHardForm extends ProductPageBL {
 
      public CartHardForm checkboxSelectForth() {
         productPage.getCheckBoxSelectForth().click();
-        return this;
-    }
-
-    public CartHardForm selectRed() {
-        productPage.getSelectHardForm().click();
-        productPage.getSelectRed().click();
-        return this;
-    }
-
-    public CartHardForm selectBlue() {
-        productPage.getSelectHardForm().click();
-        productPage.getSelectBlue().click();
-        return this;
-    }
-
-    public CartHardForm selectGreen() {
-        productPage.getSelectHardForm().click();
-        productPage.getSelectGreen().click();
-        return this;
-    }
-
-    public CartHardForm selectYellow() {
-        productPage.getSelectHardForm().click();
-        productPage.getSelectYellow().click();
         return this;
     }
 
@@ -121,10 +114,10 @@ public class CartHardForm extends ProductPageBL {
         return this;
     }
 
-    public CartHardForm hardFormUploadFile() throws InterruptedException, AWTException {
+    public CartHardForm hardFormUploadFile() throws AWTException {
         Robot robot = new Robot();
         productPage.getProductHardFormUploadButton().click();
-        Thread.sleep(6000);
+        robot.delay(7000);
         StringSelection path = new StringSelection("C:\\Users\\Sviatoslav\\Desktop\\IT\\Study\\Framework\\OpenCart\\files\\TestFile.txt");
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(path, null);
         robot.keyPress(KeyEvent.VK_CONTROL);
@@ -140,7 +133,7 @@ public class CartHardForm extends ProductPageBL {
 
     public CartHardForm cartHardFormAlertAccept() {
         try {
-            Alert alert = (new WebDriverWait(DriverRepository.DRIVERS.get(), 20).until(ExpectedConditions.alertIsPresent()));
+            Alert alert = (new WebDriverWait(DriverRepository.DRIVERS.get(), 30).until(ExpectedConditions.alertIsPresent()));
             DriverRepository.DRIVERS.get().switchTo().alert().accept();
         } catch (NoAlertPresentException e) {
             System.out.println("Alert is not present");
@@ -149,10 +142,10 @@ public class CartHardForm extends ProductPageBL {
     }
 
     public CartHardForm hardFormTemplate() throws InterruptedException, AWTException {
-                    radioSelectMedium()
+        radioSelectMedium()
                 .checkboxSelectForth()
                 .hardFormSetText("Standard template")
-                .selectYellow()
+                .selectForm("1")
                 .hardFormSetTextArea("Valid add to cart test")
                 .hardFormSetDate()
                 .hardFormSetHour()

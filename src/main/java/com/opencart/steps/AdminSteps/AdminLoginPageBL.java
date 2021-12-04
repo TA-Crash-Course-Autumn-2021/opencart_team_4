@@ -10,13 +10,14 @@ public class AdminLoginPageBL {
 
     public AdminLoginPageBL() { adminLoginPage = new AdminLoginPage(); }
 
-    public AdminLoginPageBL loginAdmin() {
+    public AdminDashboardPageBL loginAdmin() {
         adminLoginPage.getLoginString().clear();
         adminLoginPage.getLoginString().sendKeys(Admin.getLogin());
         adminLoginPage.getPasswordString().clear();
         adminLoginPage.getPasswordString().sendKeys(Admin.getPassword());
         adminLoginPage.getAdminLoginButton().click();
-        return this;
+        loginAdminCheck();
+        return new AdminDashboardPageBL();
     }
 
 

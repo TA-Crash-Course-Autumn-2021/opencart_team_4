@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class HomePage extends BasePage{
 
 
-    @FindBy(xpath = "//div[contains(@class, 'product-thumb')]")
+    @FindBy(xpath = "//div[@class = 'product-thumb transition']")
     private List<WebElement> products;
 
     @FindBy(xpath = "//h4[contains (.,'MacBook')]/a")
@@ -68,21 +68,15 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//h4[contains (.,'Canon')]/ancestor::div[@class = 'product-thumb transition']//i[contains(@class, 'exch')]/..")
     private WebElement canonEOSAddToCompare;
 
-    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']/a[contains(., 'shopping')]")
-    private WebElement successfulAddToCartAlert;
+    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']")
+    private WebElement successfulAlert;
 
     @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']/a[contains(.,'login')]")
     private WebElement unsuccessfulAddToWishListAlert;
 
-    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']/a[contains(.,'wish')]")
-    private WebElement successfulAddToWishListAlert;
 
-    @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']/a[contains(.,'com')]")
-    private WebElement successfulAddToCompareAlert;
-
-    public List<WebElement> getProducts() {
-        wait.until(ExpectedConditions.visibilityOfAllElements(products));
-        return products;
+    public List<ProductContainer> getProducts() {
+        return products.stream().map(ProductContainer::new).collect(Collectors.toList());
     }
 
     public WebElement getMacbook() {
@@ -154,23 +148,13 @@ public class HomePage extends BasePage{
         return appleCinemaAddToCart;
     }
 
-    public WebElement getSuccessfulAddToCartAlert() {
-        wait.until(ExpectedConditions.visibilityOf(successfulAddToCartAlert));
-        return successfulAddToCartAlert;
+    public WebElement getSuccessfulAlert() {
+        wait.until(ExpectedConditions.visibilityOf(successfulAlert));
+        return successfulAlert;
     }
 
     public WebElement getUnsuccessfulAddToWishListAlert() {
         wait.until(ExpectedConditions.visibilityOf(unsuccessfulAddToWishListAlert));
         return unsuccessfulAddToWishListAlert;
-    }
-
-    public WebElement getSuccessfulAddToWishListAlert() {
-        wait.until(ExpectedConditions.elementToBeClickable(successfulAddToWishListAlert));
-        return successfulAddToWishListAlert;
-    }
-
-    public WebElement getSuccessfulAddToCompareAlert() {
-        wait.until(ExpectedConditions.elementToBeClickable(successfulAddToCompareAlert));
-        return successfulAddToCompareAlert;
     }
 }

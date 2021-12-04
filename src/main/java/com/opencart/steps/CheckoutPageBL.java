@@ -44,17 +44,42 @@ public class CheckoutPageBL {
     }
 
     public CheckoutPageBL checkoutStandardTemplate(String commentText) {
-        checkoutPage.getStepTwoNewAddress().click();
-        checkoutSetStandardUserVars();
-        setCountry();
-        setRegion();
-        checkoutPage.getStepTwoContinueButton().click();
-        checkoutPage.getStepTwoNewAddress().click();
-        checkoutSetStandardUserVars();
+        if(checkoutProfiles() == 0){
+            stepTwoNewAddress();
+            checkoutSetStandardUserVars();
+        }else {
+            stepTwoExistingAddress();
+        }
+        stepTwoContinue();
+        checkoutPage.getStepThreeExistingAddress();
         checkoutPage.getStepThreeContinueButton().click();
         stepFourSelectFlatRate(commentText);
         stepFiveSelectCashOnDelivery(commentText);
         checkoutPage.getStepSixOrderConfirmButton().click();
+        return this;
+    }
+
+    public int checkoutProfiles() {
+        return checkoutPage.getStepTwoOptions().size();
+    }
+
+    public CheckoutPageBL stepTwoContinue(){
+        checkoutPage.getStepTwoContinueButton().click();
+        return this;
+    }
+
+    public CheckoutPageBL stepTwoNewAddress() {
+        checkoutPage.getStepTwoNewAddress().click();
+        return this;
+    }
+
+    public CheckoutPageBL openStepTwo() {
+        checkoutPage.getStepTwoOpen().click();
+        return this;
+    }
+
+    public CheckoutPageBL stepTwoExistingAddress() {
+        checkoutPage.getStepTwoExistingAddress().click();
         return this;
     }
 

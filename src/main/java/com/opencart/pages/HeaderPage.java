@@ -15,6 +15,9 @@ public class HeaderPage extends BasePage {
     @FindBy(xpath = "//a[@title = 'My Account']")
     private WebElement myAccountButton;
 
+    @FindBy(xpath = "//ul[@class = 'dropdown-menu dropdown-menu-right']//a[contains(.,'My')]")
+    private WebElement myAccount;
+
     @FindBy(xpath = "//li/a[text() = 'Logout']")
     private WebElement logoutButton;
 
@@ -79,7 +82,9 @@ public class HeaderPage extends BasePage {
 
     public WebElement getHeaderCart() { return headerCart; }
 
-    public WebElement getHeaderCheckoutButton() { return headerCheckoutButton; }
+    public WebElement getHeaderCheckoutButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(headerCheckoutButton));
+        return headerCheckoutButton; }
 
     public WebElement getHeaderUpperCart() { return headerUpperCart; }
 
@@ -112,5 +117,10 @@ public class HeaderPage extends BasePage {
     public WebElement getCurrencySymbol() {
         wait.until(ExpectedConditions.visibilityOf(currencySymbol));
         return currencySymbol;
+    }
+
+    public WebElement getMyAccount() {
+        wait.until(ExpectedConditions.elementToBeClickable(myAccount));
+        return myAccount;
     }
 }
