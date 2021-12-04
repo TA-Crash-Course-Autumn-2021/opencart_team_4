@@ -1,9 +1,8 @@
 package com.opencart.steps;
 
 
-import com.opencart.driver.DriverRepository;
 import com.opencart.pages.RightMenu;
-import org.openqa.selenium.interactions.Actions;
+
 
 public class RightMenuBL {
 
@@ -46,8 +45,7 @@ public class RightMenuBL {
     }
 
     public HomePageBL clickOnLogoutButton() {
-        Actions actions = new Actions(DriverRepository.DRIVERS.get());
-        actions.moveToElement(rightMenu.getLogout()).click().perform();
-        return new HomePageBL();
+    rightMenu.getLogout().click();
+    return new HomePageBL();
     }
 }

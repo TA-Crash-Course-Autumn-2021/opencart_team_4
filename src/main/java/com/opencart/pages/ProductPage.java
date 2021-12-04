@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ProductPage extends BasePage{
 
@@ -30,20 +31,11 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//input[@name = 'quantity']")
     private WebElement quantity;
 
-    @FindBy(xpath = "//select['input-option226']")
+    @FindBy(xpath = "//select[@id = 'input-option226']")
     private WebElement selectForm;
 
-    @FindBy(xpath = "//option[contains(.,'Red')]")
-    private WebElement selectRed;
-
-    @FindBy(xpath = "//option[contains(.,'Blue')]")
-    private WebElement selectBlue;
-
-    @FindBy(xpath = "//option[contains(.,'Green')]")
-    private WebElement selectGreen;
-
-    @FindBy(xpath = "//option[contains(.,'Yellow')]")
-    private WebElement selectYellow;
+    @FindBy(xpath = "//select[@id = 'input-option217']")
+    private WebElement selectHardForm;
 
     @FindBy(xpath = "//div[@class = 'alert alert-success alert-dismissible']")
     private WebElement mediumFormAlert;
@@ -69,7 +61,7 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//input[@value = '11']")
     private WebElement checkBoxSelectForth;
 
-    @FindBy(xpath = "//input[@id = 'input-option208']")
+    @FindBy(id = "input-option208")
     private WebElement productHardFormText;
 
     @FindBy(xpath = "//div[@class = 'text-danger']")
@@ -78,17 +70,23 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//textarea[@id = 'input-option209']")
     private WebElement productHardFormTextArea;
 
-    @FindBy(xpath = "//input[@id = 'input-option219']")
+    @FindBy(xpath = "//input[@name = 'option[219]']")
     private WebElement productHardFormDate;
 
-    @FindBy(xpath = "//input[@id = 'input-option221']")
+    @FindBy(xpath = "//input[@name = 'option[221]']")
     private WebElement productHardFormHour;
 
-    @FindBy(xpath = "//input[@id = 'input-option220']")
+    @FindBy(xpath = "//input[@name = 'option[220]']")
     private WebElement productHardFormDateAndHour;
 
     @FindBy(xpath = "//button[@id = 'button-upload222']")
     private WebElement productHardFormUploadButton;
+
+    @FindBy(xpath = "//select")
+    private WebElement selectOptions;
+
+    @FindBy(xpath = "//div[@class= 'radio']//input")
+    private List<WebElement> radioValues;
 
     public WebElement getProductName() { return productName;}
 
@@ -98,7 +96,9 @@ public class ProductPage extends BasePage{
 
     public WebElement getAddToWishList() { return addToWishList; }
 
-    public WebElement getCompareThisProduct() { return compareThisProduct; }
+    public WebElement getCompareThisProduct() {
+        wait.until(ExpectedConditions.elementToBeClickable(compareThisProduct));
+        return compareThisProduct; }
 
     public WebElement getProductPrice() { return productPrice; }
 
@@ -111,16 +111,6 @@ public class ProductPage extends BasePage{
     public WebElement getSelectForm() {
         wait.until(ExpectedConditions.elementToBeClickable(selectForm));
         return selectForm;
-    }
-
-    public WebElement getSelectBlue() {
-        wait.until(ExpectedConditions.elementToBeClickable(selectBlue));
-        return selectBlue;
-    }
-
-    public WebElement getSelectRed() {
-        wait.until(ExpectedConditions.elementToBeClickable(selectRed));
-        return selectRed;
     }
 
     public WebElement getMediumFormAlert() {
@@ -169,18 +159,8 @@ public class ProductPage extends BasePage{
     }
 
     public WebElement getRequiredFieldAlert() {
-        wait.until(ExpectedConditions.visibilityOfAllElements(requiredFieldAlert));
+        wait.until(ExpectedConditions.visibilityOf(requiredFieldAlert));
         return requiredFieldAlert;
-    }
-
-    public WebElement getSelectGreen() {
-        wait.until(ExpectedConditions.elementToBeClickable(selectGreen));
-        return selectGreen;
-    }
-
-    public WebElement getSelectYellow() {
-        wait.until(ExpectedConditions.elementToBeClickable(selectYellow));
-        return selectYellow;
     }
 
     public WebElement getProductHardFormTextArea() {
@@ -206,5 +186,20 @@ public class ProductPage extends BasePage{
     public WebElement getProductHardFormUploadButton() {
         wait.until(ExpectedConditions.elementToBeClickable(productHardFormUploadButton));
         return productHardFormUploadButton;
+    }
+
+    public WebElement getSelectHardForm() {
+        wait.until(ExpectedConditions.elementToBeClickable(selectHardForm));
+        return selectHardForm;
+    }
+
+    public WebElement getSelectOptions() {
+        wait.until(ExpectedConditions.elementToBeClickable(selectOptions));
+        return selectOptions;
+    }
+
+    public List<WebElement> getRadioValues() {
+        wait.until(ExpectedConditions.visibilityOfAllElements(radioValues));
+        return radioValues;
     }
 }

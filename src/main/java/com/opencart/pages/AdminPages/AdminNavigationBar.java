@@ -27,6 +27,7 @@ public class AdminNavigationBar extends BasePage {
     @FindBy(xpath = "//ul[@id = 'collapse-7-2-9']//a[text() = 'Tax Rates']")
     private WebElement taxRates;
 
+
     @FindBy(xpath = "//li[@id = 'menu-catalog']")
     private WebElement menuCatalog;
 

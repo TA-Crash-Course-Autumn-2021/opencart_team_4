@@ -17,6 +17,7 @@ public class PasswordChangingBL {
         passwordChangingPage.getChangePasswordConfirmString().clear();
         passwordChangingPage.getChangePasswordConfirmString().sendKeys(newPassword);
         passwordChangingPage.getChangePasswordContinueButton().click();
+        successLoginCheck();
         return this;
     }
 
@@ -27,6 +28,7 @@ public class PasswordChangingBL {
         passwordChangingPage.getChangePasswordConfirmString().clear();
         passwordChangingPage.getChangePasswordConfirmString().sendKeys(model.getPasswordConfirm());
         passwordChangingPage.getChangePasswordContinueButton().click();
+        passMatchError();
         return this;
     }
 

@@ -37,6 +37,7 @@ public class EditAccountPageBL {
 
     public EditAccountPageBL editAccountPageContinueButtonClick(){
         editAccountPage.getEditAccountContinueButton().click();
+        confirmAccountChanging();
         return this;
     }
 

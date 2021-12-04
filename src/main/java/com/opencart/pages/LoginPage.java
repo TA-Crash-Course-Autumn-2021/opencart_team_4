@@ -49,7 +49,7 @@ public class LoginPage extends BasePage{
     }
 
     public WebElement getUnsuccessfulLoginAlert() {
-        wait.until(ExpectedConditions.visibilityOf(unsuccessfulLoginAlert));
+        wait.until(ExpectedConditions.elementToBeClickable(unsuccessfulLoginAlert));
         return unsuccessfulLoginAlert;
     }
 }

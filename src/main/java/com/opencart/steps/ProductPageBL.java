@@ -4,6 +4,8 @@ package com.opencart.steps;
 import com.opencart.pages.ProductPage;
 import org.testng.Assert;
 
+import java.util.Locale;
+
 public class ProductPageBL {
 
     private ProductPage productPage;
@@ -31,9 +33,10 @@ public class ProductPageBL {
     }
 
     public ProductPageBL successfulProductAdding() {
-        String expected = "Success: You have added ";
-        String actual = productPage.getMediumFormAlert().getText();
-        Assert.assertTrue(actual.contains(expected), "Product not added to cart");
+        String expected = "Success: You have added".trim().toLowerCase();
+        String shoppingCart = "shopping cart".trim().toLowerCase();
+        String actual = productPage.getMediumFormAlert().getText().toLowerCase().trim();
+        Assert.assertTrue(actual.contains(expected) & actual.contains(shoppingCart), "Product not added to cart");
         return this;
     }
 
@@ -43,6 +46,8 @@ public class ProductPageBL {
         Assert.assertTrue(actual.contains(expected));
         return this;
     }
+
+    public HeaderPageBL getHeaderPageBL() { return new HeaderPageBL(); }
 
     public void addProductToWishList(){
         productPage.getAddToWishList().click();
