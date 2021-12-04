@@ -9,8 +9,13 @@ public class SystemCategories {
 
     public SystemCategories() {adminNavigationBar = new AdminNavigationBar(); }
 
+
     public LocalisationSubcategory clickOnLocalisation() {
         adminNavigationBar.getLocalisationSubCategory().click();
         return new LocalisationSubcategory();
     }
+
+
+
+
 }

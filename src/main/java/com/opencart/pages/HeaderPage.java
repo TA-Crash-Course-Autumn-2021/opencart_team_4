@@ -1,6 +1,7 @@
 package com.opencart.pages;
 
 import com.opencart.driver.DriverRepository;
+import com.opencart.pages.containers.CartProductContainer;
 import com.opencart.pages.containers.HeaderPageCartContainer;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -81,7 +82,9 @@ public class HeaderPage extends BasePage {
 
     public WebElement getHeaderCheckoutButton() { return headerCheckoutButton; }
 
-    public WebElement getHeaderUpperCart() { return headerUpperCart; }
+    public WebElement getHeaderUpperCart() {
+        wait.until(ExpectedConditions.elementToBeClickable(headerUpperCart));
+        return headerUpperCart; }
 
     public WebElement getHeaderWishListButton() { return headerWishListButton; }
 
@@ -111,4 +114,6 @@ public class HeaderPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(currencySymbol));
         return currencySymbol;
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.opencart.steps;
 
 import com.opencart.pages.HeaderPage;
 import com.opencart.pages.containers.HeaderPageCartContainer;
+import com.opencart.steps.AdminSteps.AdminCouponsPageBL;
 
 public class HeaderPageCart {
 
@@ -19,4 +20,12 @@ public class HeaderPageCart {
             product.headerCartClickOnProduct().click();
             return this;
         }
+
+
+
+
+
+
+
+
 }
