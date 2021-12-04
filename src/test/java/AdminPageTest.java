@@ -102,4 +102,19 @@ public class AdminPageTest extends BaseTest {
                 .manufacturerChangesCheck();
     }
 
+    @Test
+    public void adminAddEditDeleteProduct() {
+        new Navigation().navigateToUrl(ADMIN_URL.getValue());
+        AdminLoginPageBL adminLoginPageBL = new AdminLoginPageBL();
+        adminLoginPageBL.loginAdmin().loginAdminCheck().getNavigationBar()
+                .categoryCatalogClick()
+                .clickOnProducts()
+                .clickOnAddNewProductButton()
+                .addTestProduct()
+                .productsChangesCheck()
+                .clickOnEditProductButton()
+                .editTestProduct()
+                .productsChangesCheck()
+                .deleteTestProduct();
+    }
 }
