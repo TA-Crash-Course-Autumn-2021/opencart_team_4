@@ -33,6 +33,9 @@ public class AdminNavigationBar extends BasePage {
     @FindBy(xpath = "//*[contains(text(),'Manufacturers')]")
     private WebElement manufacturersCategory;
 
+    @FindBy(xpath = "//*[contains(text(),'Products')]")
+    private WebElement productsCategory;
+
     public WebElement getMenuSystem() {
         wait.until(ExpectedConditions.visibilityOfAllElements(menuSystem));
         return menuSystem;
@@ -71,5 +74,10 @@ public class AdminNavigationBar extends BasePage {
     public WebElement getManufacturersCategory() {
         wait.until(ExpectedConditions.elementToBeClickable(manufacturersCategory));
         return manufacturersCategory;
+    }
+
+    public WebElement getProductsCategory() {
+        wait.until(ExpectedConditions.elementToBeClickable(productsCategory));
+        return productsCategory;
     }
 }
