@@ -1,19 +1,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
 <suite name="SeleniumTest" verbose="1">
     <test name="OpencartTesting">
         <parameter name="browser" value="chrome" />
         <packages>
-            <package name="AccountChangingTests"/>
-            <package name="AddToCartTests" />
-            <package name="AddToCompareTests"/>
-            <package name="AddToWishListTests"/>
-            <package name="AdminPageTests"/>
+            <package name="accountChangingTests"/>
+            <package name="addToCartTests" />
+            <package name="addToCompareTests"/>
+            <package name="addToWishListTests"/>
+            <package name="adminPageTests"/>
             <package name="CurrencyChangingTest"/>
-            <package name="LoginTests"/>
+            <package name="loginTests"/>
             <package name="SearchPageTest"/>
-            <package name="UserRegisterTests"/>
-            <package name="UserStories"/>
+            <package name="userRegisterTests"/>
+            <package name="userStories"/>
         </packages>
     </test>
 </suite>
