@@ -15,4 +15,9 @@ public class AdminNavigationBarBL {
         adminNavigationBar.getMenuSystem().click();
         return new SystemCategories();
     }
+    
+     public MarketingCategory categoryMarketingClick() {
+        adminNavigationBar.getMenuMarketing().click();
+        return new MarketingCategory();
+    }
 }
