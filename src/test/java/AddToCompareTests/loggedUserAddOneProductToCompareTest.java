@@ -1,12 +1,12 @@
 package AddToCompareTests;
 
 
-import TestConfigs.LoggedUserTest;
-import TestListener.TestRetry;
+import TestConfigs.loggedUserTest;
 import com.opencart.steps.MainPageBL;
+import com.opencart.testListener.TestRetry;
 import org.testng.annotations.Test;
 
-public class loggedUserAddOneProductToCompareTest extends LoggedUserTest {
+public class loggedUserAddOneProductToCompareTest extends loggedUserTest {
 
     @Test(retryAnalyzer = TestRetry.class)
     public void loginUserOneProductAddToCompare() {

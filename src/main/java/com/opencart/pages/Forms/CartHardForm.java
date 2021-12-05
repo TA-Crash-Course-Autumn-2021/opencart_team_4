@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -118,7 +119,8 @@ public class CartHardForm extends ProductPageBL {
         Robot robot = new Robot();
         productPage.getProductHardFormUploadButton().click();
         robot.delay(7000);
-        StringSelection path = new StringSelection("C:\\Users\\Sviatoslav\\Desktop\\IT\\Study\\Framework\\OpenCart\\files\\TestFile.txt");
+        String filePath = this.getClass().getResource("/testdata/" + "TestFile.txt").getPath();
+        StringSelection path = new StringSelection(new File(filePath).getAbsolutePath());
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(path, null);
         robot.keyPress(KeyEvent.VK_CONTROL);
         robot.keyPress(KeyEvent.VK_V);

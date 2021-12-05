@@ -1,19 +1,18 @@
 package AdminPageTests;
 
-import TestConfigs.AdminTest;
-import TestConfigs.BaseTest;
-import TestListener.TestRetry;
+import TestConfigs.adminTest;
 import com.opencart.enums.Currencies;
 import com.opencart.navigation.Navigation;
 import com.opencart.steps.AdminSteps.AdminLoginPageBL;
 import com.opencart.steps.AdminSteps.AdminMainPageBL;
 import com.opencart.steps.MainPageBL;
+import com.opencart.testListener.TestRetry;
 import org.testng.annotations.Test;
 
 import static com.opencart.enums.URLs.ADMIN_URL;
 import static com.opencart.enums.URLs.BASE_URL;
 
-public class adminNewCurrencyTest extends AdminTest {
+public class adminNewCurrencyTest extends adminTest {
 
     @Test(retryAnalyzer = TestRetry.class)
     public void adminNewCurrency() {

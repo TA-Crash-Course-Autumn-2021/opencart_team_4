@@ -1,5 +1,4 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
 <suite name="SeleniumTest" verbose="1">
     <test name="OpencartTesting">
         <parameter name="browser" value="chrome" />

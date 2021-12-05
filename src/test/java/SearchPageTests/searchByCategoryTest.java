@@ -1,15 +1,14 @@
 package SearchPageTests;
 
-import TestConfigs.BaseTest;
-import TestListener.TestRetry;
+import TestConfigs.baseTest;
 import com.opencart.navigation.Navigation;
 import com.opencart.steps.HomePageBL;
-import com.opencart.steps.MainPageBL;
+import com.opencart.testListener.TestRetry;
 import org.testng.annotations.Test;
 
 import static com.opencart.enums.URLs.BASE_URL;
 
-public class searchByCategoryTest extends BaseTest {
+public class searchByCategoryTest extends baseTest {
 
     @Test(retryAnalyzer = TestRetry.class)
     public void searchByCategoryTest() {

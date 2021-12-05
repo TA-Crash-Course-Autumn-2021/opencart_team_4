@@ -1,12 +1,13 @@
 package AccountChangingTests;
 
-import TestConfigs.LoggedUserTest;
-import TestListener.TestRetry;
+
+import TestConfigs.loggedUserTest;
+import com.opencart.testListener.TestRetry;
 import com.opencart.steps.HomePageBL;
 import org.testng.annotations.Test;
 
 
-public class changeAllAccountParametersTest extends LoggedUserTest {
+public class changeAllAccountParametersTest extends loggedUserTest {
 
     @Test(retryAnalyzer = TestRetry.class)
     public void changeAllAccountParameters() {

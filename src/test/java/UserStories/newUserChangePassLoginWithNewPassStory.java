@@ -1,14 +1,15 @@
 package UserStories;
 
-import TestConfigs.BaseTest;
-import TestListener.TestRetry;
+import TestConfigs.baseTest;
 import com.opencart.navigation.Navigation;
 import com.opencart.steps.MainPageBL;
+import com.opencart.testListener.TestRetry;
 import org.testng.annotations.Test;
 
 import static com.opencart.enums.URLs.BASE_URL;
 
-public class newUserChangePassLoginWithNewPassStory extends BaseTest {
+public class newUserChangePassLoginWithNewPassStory extends baseTest {
+
     @Test(retryAnalyzer = TestRetry.class)
     public void userCreateLoginChangePassLoginNewPass() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
