@@ -1,14 +1,11 @@
 package LoginTests;
 
-import TestConfigs.LoggedUserTest;
-import TestListener.TestRetry;
-import com.opencart.navigation.Navigation;
+import TestConfigs.loggedUserTest;
 import com.opencart.steps.HomePageBL;
-import com.opencart.steps.MainPageBL;
+import com.opencart.testListener.TestRetry;
 import org.testng.annotations.Test;
-import static com.opencart.enums.URLs.BASE_URL;
 
-public class invalidPasswordChangingTest extends LoggedUserTest {
+public class invalidPasswordChangingTest extends loggedUserTest {
 
     @Test(retryAnalyzer = TestRetry.class)
     public void invalidPasswordChanging() {

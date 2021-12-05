@@ -1,15 +1,15 @@
 package AddToCartTests;
 
-import TestConfigs.BaseTest;
-import TestListener.TestRetry;
+import TestConfigs.baseTest;
 import com.opencart.navigation.Navigation;
 import com.opencart.steps.HomePageBL;
+import com.opencart.testListener.TestRetry;
 import org.testng.annotations.Test;
 
 import static com.opencart.enums.URLs.BASE_URL;
 
 
-public class twoProductsAddToCartTest extends BaseTest {
+public class twoProductsAddToCartTest extends baseTest {
 
     @Test(retryAnalyzer = TestRetry.class)
     public void twoProductAddingToCartTest() {

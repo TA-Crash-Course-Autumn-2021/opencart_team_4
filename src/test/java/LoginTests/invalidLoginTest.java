@@ -1,12 +1,12 @@
 package LoginTests;
 
-import TestConfigs.LoggedUserTest;
-import TestListener.TestRetry;
+import TestConfigs.loggedUserTest;
 import com.opencart.steps.HomePageBL;
+import com.opencart.testListener.TestRetry;
 import org.testng.annotations.Test;
 
 
-public class invalidLoginTest extends LoggedUserTest {
+public class invalidLoginTest extends loggedUserTest {
 
     @Test(retryAnalyzer = TestRetry.class)
     public void invalidLoginTest() {

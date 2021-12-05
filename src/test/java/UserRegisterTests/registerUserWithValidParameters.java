@@ -1,14 +1,14 @@
 package UserRegisterTests;
 
-import TestConfigs.BaseTest;
-import TestListener.TestRetry;
+import TestConfigs.baseTest;
 import com.opencart.navigation.Navigation;
 import com.opencart.steps.MainPageBL;
+import com.opencart.testListener.TestRetry;
 import org.testng.annotations.Test;
 
 import static com.opencart.enums.URLs.BASE_URL;
 
-public class registerUserWithValidParameters extends BaseTest {
+public class registerUserWithValidParameters extends baseTest {
 
     @Test(retryAnalyzer = TestRetry.class)
     public void registerUserWithValidParameters() {
@@ -17,6 +17,7 @@ public class registerUserWithValidParameters extends BaseTest {
         mainPageBL.getHeaderPageBL()
                 .clickOnMyAccountButton()
                 .clickOnRegisterButton()
-                .registerNewRandomPerson().getRegisterVerify();
+                .registerNewRandomPerson()
+                .getRegisterVerify();
     }
 }

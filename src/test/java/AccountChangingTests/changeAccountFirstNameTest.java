@@ -1,14 +1,12 @@
 package AccountChangingTests;
 
-import TestConfigs.LoggedUserTest;
-import TestListener.TestRetry;
-import com.opencart.navigation.Navigation;
+import TestConfigs.loggedUserTest;
+import com.opencart.testListener.TestRetry;
 import com.opencart.steps.MainPageBL;
 import org.testng.annotations.Test;
 
-import static com.opencart.enums.URLs.BASE_URL;
 
-public class changeAccountFirstNameTest extends LoggedUserTest {
+public class changeAccountFirstNameTest extends loggedUserTest {
 
     @Test(retryAnalyzer = TestRetry.class)
     public void changeAccountFirstName() {

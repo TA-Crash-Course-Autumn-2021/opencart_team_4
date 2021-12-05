@@ -1,11 +1,11 @@
 package AdminPageTests;
 
-import TestConfigs.AdminTest;
-import TestListener.TestRetry;
+import TestConfigs.adminTest;
 import com.opencart.steps.AdminSteps.AdminDashboardPageBL;
+import com.opencart.testListener.TestRetry;
 import org.testng.annotations.Test;
 
-public class adminAddEditDeleteTaxRatesTest extends AdminTest {
+public class adminAddEditDeleteTaxRatesTest extends adminTest {
 
     @Test(retryAnalyzer = TestRetry.class)
     public void adminAddEditDeleteTaxRates() {
