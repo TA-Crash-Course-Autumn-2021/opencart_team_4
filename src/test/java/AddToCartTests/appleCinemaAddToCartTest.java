@@ -18,18 +18,6 @@ public class appleCinemaAddToCartTest extends baseTest {
     public void appleCinemaAddToCartTest() throws InterruptedException, AWTException {
         new Navigation().navigateToUrl(BASE_URL.getValue());
         HomePageBL homePageBL = new HomePageBL();
-        homePageBL.appleAddToCart()
-                .radioForm(RadioValues.SMALL.getValue())
-                .checkboxSelectForth()
-                .hardFormSetText("Text field testing")
-                .selectForm(HardSelectForm.BLUE.getValue())
-                .hardFormSetTextArea("Valid add to cart test")
-                .hardFormSetDate()
-                .hardFormSetHour()
-                .hardFormSetDateAndHour()
-                .hardFormUploadFile()
-                .cartHardFormAlertAccept()
-                .addToCart()
-                .successfulProductAdding();
+        homePageBL.appleAddToCart();
     }
 }

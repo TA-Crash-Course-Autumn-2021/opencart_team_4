@@ -49,6 +49,9 @@ public class ProductPage extends BasePage{
     @FindBy(xpath = "//div[@id = 'input-option218']//input[@value = '7']")
     private WebElement radioLarge;
 
+    @FindBy(xpath = "//div[@class = 'checkbox']//input")
+    private List<WebElement> checkboxOptions;
+
     @FindBy(xpath = "//input[@value = '8']")
     private WebElement checkBoxSelectFirst;
 
@@ -201,5 +204,10 @@ public class ProductPage extends BasePage{
     public List<WebElement> getRadioValues() {
         wait.until(ExpectedConditions.visibilityOfAllElements(radioValues));
         return radioValues;
+    }
+
+    public List<WebElement> getCheckboxOptions() {
+        wait.until(ExpectedConditions.visibilityOfAllElements(checkboxOptions));
+        return checkboxOptions;
     }
 }

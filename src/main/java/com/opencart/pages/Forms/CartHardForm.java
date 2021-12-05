@@ -2,6 +2,9 @@ package com.opencart.pages.Forms;
 
 
 import com.opencart.driver.DriverRepository;
+import com.opencart.enums.ProductForms.HardCheckbox;
+import com.opencart.enums.ProductForms.HardSelectForm;
+import com.opencart.enums.ProductForms.RadioValues;
 import com.opencart.pages.ProductPage;
 import com.opencart.steps.ProductPageBL;
 import org.openqa.selenium.Alert;
@@ -30,6 +33,15 @@ public class CartHardForm extends ProductPageBL {
         for(WebElement radioValue : productPage.getRadioValues()){
             if(radioValue.getAttribute("value").contains(value)){
                 radioValue.click();
+            }
+        }
+        return this;
+    }
+
+    public CartHardForm checkBox(String value) {
+        for(WebElement checkBox : productPage.getCheckboxOptions()){
+            if(checkBox.getAttribute("value").contains(value)){
+                checkBox.click();
             }
         }
         return this;
@@ -143,11 +155,12 @@ public class CartHardForm extends ProductPageBL {
         return this;
     }
 
-    public CartHardForm hardFormTemplate() throws InterruptedException, AWTException {
+    public CartHardForm hardFormTemplate() throws AWTException {
         radioSelectMedium()
-                .checkboxSelectForth()
+                .checkBox(HardCheckbox.CHECKBOX1.getValue())
                 .hardFormSetText("Standard template")
-                .selectForm("1")
+                .selectForm(HardSelectForm.RED.getValue())
+                .radioForm(RadioValues.MEDIUM.getValue())
                 .hardFormSetTextArea("Valid add to cart test")
                 .hardFormSetDate()
                 .hardFormSetHour()
