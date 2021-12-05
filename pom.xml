@@ -16,7 +16,7 @@
         <selenium-java.version>2.53.1</selenium-java.version>
         <logback-classic.version>1.2.3</logback-classic.version>
         <junit-jupiter-engine.version>5.4.0</junit-jupiter-engine.version>
-        <maven-surefire.version>2.19</maven-surefire.version>
+        <maven-surefire.version>>2.19</maven-surefire.version>
         <maven-surefire-reports-plugin.version>2.19.1</maven-surefire-reports-plugin.version>
         <allure-maven.version>2.10</allure-maven.version>
         <allure-testng.version>2.9.0</allure-testng.version>
@@ -111,5 +111,10 @@
                 <version>3.7.1</version>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/test/resources</directory>
+            </resource>
+        </resources>
     </build>
 </project>
