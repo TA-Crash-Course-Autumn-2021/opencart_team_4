@@ -15,15 +15,6 @@ public class RegisterModelRepository {
     public RegisterModelRepository() {
     }
 
-    public static LoginPageBL getLoginRandomUser() {
-        RegisterModel model = RegisterModelRepository.getNewRandomRegisterModel();
-        LoginPageBL loginPageBL = new LoginPageBL();
-        loginPageBL.loginPageSetEmail(randomEmail);
-        loginPageBL.loginPageSetPass(randomPassword);
-        loginPageBL.loginPageLoginButtonClick();
-        return new LoginPageBL();
-    }
-
     public static RegisterModel getInvalidRegisterModel() {
         String password = RandomStringUtils.randomAlphabetic(7);
         String confirmPassword = RandomStringUtils.randomAlphabetic(7);
@@ -50,6 +41,8 @@ public class RegisterModelRepository {
     }
 
     public static RegisterModel getNewRandomRegisterModel() {
+        LoginPageBL.setRandomEmail(randomEmail);
+        LoginPageBL.setRandomPassword(randomPassword);
         return RegisterModel.getBuilder()
                 .firstName(RandomStringUtils.randomAlphabetic(5))
                 .lastName(RandomStringUtils.randomAlphabetic(5))

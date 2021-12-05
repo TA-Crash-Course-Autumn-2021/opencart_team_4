@@ -4,6 +4,7 @@ import com.opencart.datamodel.RegisterModel;
 import com.opencart.driver.DriverRepository;
 import com.opencart.pages.LoginPage;
 import com.opencart.repository.RegisterModelRepository;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -16,6 +17,8 @@ public class LoginPageBL {
     private String loginPassword;
     private LoginPage loginPage;
     private static String newPassword;
+    private static String randomPassword;
+    private static String randomEmail;
 
     public LoginPageBL() { loginPage = new LoginPage(); }
 
@@ -56,7 +59,6 @@ public class LoginPageBL {
         return this;
     }
 
-
     public LoginPageBL loginRandomChangedUser() {
         RegisterModel model = RegisterModelRepository.getNewRandomRegisterModel();
         LoginPageBL loginPageBL = new LoginPageBL();
@@ -70,6 +72,32 @@ public class LoginPageBL {
        RegisterModel loginModel = RegisterModelRepository.getInvalidRegisterModel();
         loginPageSetEmail(loginModel.getEmail());
         loginPageSetPass(loginModel.getPassword());
+        loginPageLoginButtonClick();
+        return this;
+    }
+
+    public LoginPageBL randomUserInvalidLogin() {
+        int count = 0;
+        HomePageBL homePageBL = new HomePageBL();
+        homePageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton()
+                .loginPageSetPass("45464646")
+                .loginPageSetEmail(LoginPageBL.getRandomEmail());
+        do{
+        LoginPageBL loginPageBL = new LoginPageBL();
+        loginPageBL.loginPageLoginButtonClick();
+        count++;
+        }while(count<6);
+        String expected = "Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.";
+        String actual = loginPage.getUnsuccessfulLoginAlert().getText().trim();
+        Assert.assertTrue(actual.contains(expected));
+        return this;
+    }
+
+    public LoginPageBL loginRandom() {
+        loginPageSetEmail(LoginPageBL.getRandomEmail());
+        loginPageSetPass(LoginPageBL.getRandomPassword());
         loginPageLoginButtonClick();
         return this;
     }
@@ -88,14 +116,17 @@ public class LoginPageBL {
         return this;
     }
 
+    public static String getRandomEmail() { return randomEmail; }
+
+    public static String getRandomPassword() { return randomPassword; }
+
+    public static void setRandomPassword(String randomPassword) { LoginPageBL.randomPassword = randomPassword; }
+
+    public static void setRandomEmail(String randomEmail) { LoginPageBL.randomEmail = randomEmail; }
+
     public static void setNewPassword(String newPassword) { LoginPageBL.newPassword = newPassword;}
 
     public void setLoginEmail(String loginEmail) { this.loginEmail = loginEmail; }
 
     public void setLoginPassword(String loginPassword) { this.loginPassword = loginPassword; }
-
-    public LoginPageBL loginRandom() {
-        RegisterModelRepository.getLoginRandomUser();
-        return this;
-    }
 }

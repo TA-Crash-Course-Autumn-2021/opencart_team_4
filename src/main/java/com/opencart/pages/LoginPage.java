@@ -26,6 +26,9 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//div[@class = 'alert alert-danger alert-dismissible']")
     private WebElement unsuccessfulLoginAlert;
 
+    @FindBy(xpath = "//div[@class = 'alert alert-danger alert-dismissible'][contains(.,' in 1 hour')]")
+    private WebElement unsuccessfulLoginAccountFreeze;
+
     public WebElement getLoginPageContinueCreateAccount() {
         wait.until(ExpectedConditions.elementToBeClickable(loginPageContinueCreateAccount));
         return loginPageContinueCreateAccount;
@@ -51,5 +54,10 @@ public class LoginPage extends BasePage{
     public WebElement getUnsuccessfulLoginAlert() {
         wait.until(ExpectedConditions.elementToBeClickable(unsuccessfulLoginAlert));
         return unsuccessfulLoginAlert;
+    }
+
+    public WebElement getUnsuccessfulLoginAccountFreeze() {
+        wait.until(ExpectedConditions.elementToBeClickable(unsuccessfulLoginAccountFreeze));
+        return unsuccessfulLoginAccountFreeze;
     }
 }
