@@ -26,6 +26,21 @@ public class AdminNavigationBar extends BasePage {
 
     @FindBy(xpath = "//ul[@id = 'collapse-7-2-9']//a[text() = 'Tax Rates']")
     private WebElement taxRates;
+    
+    @FindBy(xpath = "//*[@id=\"menu-marketing\"]/a")
+    private WebElement marketing;
+
+    @FindBy(xpath = "//a[contains(.,'Coupons')]")
+    private WebElement coupons;
+
+    @FindBy(xpath = "//a[contains(.,' Sales')]")
+    private WebElement sales;
+
+    @FindBy(xpath = "//*[@id=\"collapse4\"]/li[4]/a")
+    private WebElement giftVauchersAll;
+
+    @FindBy(xpath = "//*[@id=\"collapse4-3\"]/li[1]/a")
+    private WebElement giftVauchersSubCategory;
 
     public WebElement getMenuSystem() {
         wait.until(ExpectedConditions.visibilityOfAllElements(menuSystem));
@@ -55,5 +70,30 @@ public class AdminNavigationBar extends BasePage {
     public WebElement getTaxRates() {
         wait.until(ExpectedConditions.elementToBeClickable(taxRates));
         return taxRates;
+    }
+    
+     public WebElement getMenuMarketing() {
+        wait.until(ExpectedConditions.visibilityOfAllElements(marketing));
+        return marketing;
+    }
+
+    public WebElement getCoupons() {
+        wait.until(ExpectedConditions.elementToBeClickable(coupons));
+        return coupons;
+    }
+
+    public WebElement getMenuSales() {
+        wait.until(ExpectedConditions.elementToBeClickable(sales));
+        return sales;
+    }
+
+    public WebElement getGiftVauchersAll() {
+        wait.until(ExpectedConditions.elementToBeClickable(giftVauchersAll));
+        return giftVauchersAll;
+    }
+
+    public WebElement getGiftVauchersSubCategory() {
+        wait.until(ExpectedConditions.elementToBeClickable(giftVauchersSubCategory));
+        return giftVauchersSubCategory;
     }
 }

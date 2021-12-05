@@ -32,4 +32,54 @@ public class CartPageBL {
         productQuantity.sendKeys(Integer.toString(quantity));
         return this;
     }
+    
+     public CartPageBL cartClickOnCodeCoupon(){
+        CartPage page = new CartPage();
+        page.getUseCouponCode().click();
+        return this;
+    }
+
+    public CartPageBL cartClickOnGiftCertificate (){
+        CartPage page = new CartPage();
+        page.getUseGiftCertificate().click();
+        return this;
+    }
+
+    public CartPageBL cartClickOnAddGiftCertificate(String code){
+        CartPage page = new CartPage();
+        page.getDataGiftCertificate().sendKeys(code);
+        return this;
+    }
+
+    public CartPageBL cartClickOnApplyGiftCertificate(){
+        CartPage page = new CartPage();
+        page.getButtonApplyGiftCertificate().click();
+        return this;
+    }
+
+    public CartPageBL cartClickOnAddCodeCoupon(String code){
+        CartPage page = new CartPage();
+        page.getDataUseCouponCode().sendKeys(code);
+        return this;
+    }
+    public CartPageBL cartClickOnApplyCodeCoupon(){
+        CartPage page = new CartPage();
+        page.getButtonApplyCoupon().click();
+        return this;
+    }
+
+    public CartPageBL couponApplyCheck() {
+        String expected = "Success: Your coupon discount has been applied!";
+        String actual = cartPage.getApplyAlert().getText().trim();
+        Assert.assertTrue(actual.contains(expected), "Error: tax rates are not modified");
+        return new CartPageBL();
+    }
+
+    public CartPageBL giftCertificateApplyCheck() {
+        String expected = "Success: Your gift certificate discount has been applied!";
+        String actual = cartPage.getApplyAlert().getText().trim();
+        Assert.assertTrue(actual.contains(expected), "Error: tax rates are not modified");
+        return new CartPageBL();
+    }
+
 }
