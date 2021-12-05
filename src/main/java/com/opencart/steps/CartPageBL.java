@@ -32,27 +32,4 @@ public class CartPageBL {
         productQuantity.sendKeys(Integer.toString(quantity));
         return this;
     }
-    
-     public CartPageBL cartClickOnCodeCoupon(){
-        CartPage page = new CartPage();
-        page.getUseCouponCode().click();
-        return this;
-    }
-    public CartPageBL cartClickOnAddCodeCoupon(String code){
-        CartPage page = new CartPage();
-        page.getDataUseCouponCode().sendKeys(code);
-        return this;
-    }
-    public CartPageBL cartClickOnApplyCodeCoupon(){
-        CartPage page = new CartPage();
-        page.getButtonApplyCoupon().click();
-        return this;
-    }
-
-    public CartPageBL couponApplyCheck() {
-        String expected = "Success: Your coupon discount has been applied!";
-        String actual = cartPage.getCouponApplyAlert().getText().trim();
-        Assert.assertTrue(actual.contains(expected), "Error: tax rates are not modified");
-        return new CartPageBL();
-    }
 }
