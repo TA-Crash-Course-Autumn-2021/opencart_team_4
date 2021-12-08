@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SeleniumTest" verbose="1">
+    <test name="OpencartTesting">
+        <parameter name="browser" value="chrome" />
+        <packages>
+            <package name="dataProviderTest"/>
+            <package name="accountBlockTest"/>
+            <package name="userRegisterTests"/>
+            <package name="accountChangingTests"/>
+            <package name="addToCartTests" />
+            <package name="addToCompareTests"/>
+            <package name="addToWishListTests"/>
+            <package name="adminPageTests"/>
+            <package name="CurrencyChangingTest"/>
+            <package name="loginTests"/>
+            <package name="SearchPageTest"/>
+            <package name="userStories"/>
+        </packages>
+    </test>
+</suite>
