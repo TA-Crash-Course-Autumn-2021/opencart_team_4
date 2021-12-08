@@ -16,8 +16,38 @@ public class RegisterPageBL {
         registerPage = new RegisterPage();
     }
 
-    public RegisterPageBL registerNewPerson() {
-        RegisterModel registerModel = RegisterModelRepository.getRegisterModel();
+    public RegisterPageBL registerNewInvalidPerson() {
+        RegisterModel registerModel = RegisterModelRepository.getInvalidRegisterModel();
+        inputFirstName(registerModel.getFirstName());
+        inputLastName(registerModel.getLastName());
+        inputEmail(registerModel.getEmail());
+        inputTelephone(registerModel.getTelephone());
+        inputInvalidPassword(registerModel.getPassword());
+        inputInvalidPasswordConfirm(registerModel.getPasswordConfirm());
+        chooseSubscribe(1);
+        clickPolicyCheckbox();
+        clickOnContinueButton();
+        return this;
+    }
+
+    public SuccessRegisterPageBL registerNewRandomPerson() {
+        RegisterModel registerModel = RegisterModelRepository.getNewRandomRegisterModel();
+        String password = registerModel.getPassword();
+        String email = registerModel.getEmail();
+        inputFirstName(registerModel.getFirstName());
+        inputLastName(registerModel.getLastName());
+        inputEmail(email);
+        inputTelephone(registerModel.getTelephone());
+        inputInvalidPassword(password);
+        inputInvalidPasswordConfirm(registerModel.getPasswordConfirm());
+        chooseSubscribe(1);
+        clickPolicyCheckbox();
+        clickOnContinueButton();
+        return new SuccessRegisterPageBL();
+    }
+
+    public RegisterPageBL registerNewValidPerson() {
+        RegisterModel registerModel = RegisterModelRepository.getValidModel();
         inputFirstName(registerModel.getFirstName());
         inputLastName(registerModel.getLastName());
         inputEmail(registerModel.getEmail());
@@ -51,6 +81,16 @@ public class RegisterPageBL {
         registerPage.getTelephoneInput().sendKeys(telephone);
     }
 
+    private void inputInvalidPasswordConfirm(String passwordConfirm) {
+        registerPage.getPasswordConfirmInput().clear();
+        registerPage.getPasswordConfirmInput().sendKeys(passwordConfirm);
+    }
+
+    private void inputInvalidPassword(String password) {
+        registerPage.getPasswordInput().clear();
+        registerPage.getPasswordInput().sendKeys(password);
+    }
+
     private void inputPassword(String password) {
         registerPage.getPasswordInput().clear();
         registerPage.getPasswordInput().sendKeys(password);
@@ -72,6 +112,12 @@ public class RegisterPageBL {
 
     public void verifyUserRegistration() {
         String expectedMessage = "Your Account Has Been Created!";
-        Assert.assertEquals(successRegisterPage.getSuccessTitle().getText(), expectedMessage, "Incorrect page title");
+        String actualMessage = successRegisterPage.getSuccessTitle().getText();
+        Assert.assertTrue(actualMessage.contains(expectedMessage), "Incorrect page title");
+    }
+
+    public void passwordNotMatchCheck() {
+        String expectedError = "Password confirmation does not match password!";
+        Assert.assertTrue(registerPage.getUnsuccessPasswordMatch().contains(expectedError));
     }
 }
